@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оливковый сад и эко-туризм в Словении</title>
+    <title>Оливковый сад и эко-туризм в Словении | Интерактивная презентация</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,241 +12,529 @@
             --primary-color: #6B8E23;
             --secondary-color: #8B9E6B;
             --accent-color: #D4AF37;
-            --text-dark: #333;
-            --text-light: #666;
+            --text-dark: #333333;
+            --text-light: #666666;
             --bg-light: #F9F7F1;
             --bg-dark: #2C3E50;
             --transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
             line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
+            margin-bottom: 1rem;
         }
         
-        .slide {
-            padding: 3rem 0;
-            border-bottom: 1px solid #e5e7eb;
+        .section {
+            min-height: 100vh;
+            padding: 3rem 1rem;
             position: relative;
+            border-bottom: 2px solid rgba(107, 142, 35, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .slide-number {
             position: absolute;
             top: 20px;
             right: 20px;
+            width: 50px;
+            height: 50px;
             background-color: var(--primary-color);
             color: white;
-            width: 40px;
-            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Заголовки */
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            transition: width 0.5s ease;
+        }
+        
+        h1:hover::after {
+            width: 100%;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 1rem;
+        }
+        
+        /* Таблицы */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background-color: rgba(107, 142, 35, 0.05);
+        }
+        
+        /* Карточки */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.7;
+        }
+        
+        /* Изображения */
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 1.5rem 0;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Колонки */
+        .columns {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Статистика */
+        .stat-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-text {
+            color: var(--text-light);
+        }
+        
+        /* Особенности */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Продукты */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .product {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-title {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Дорожная карта */
+        .roadmap {
+            position: relative;
+            padding-left: 50px;
+            margin: 2rem 0;
+        }
+        
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            animation: fadeInRight 0.5s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--order) * 0.2s);
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 4px solid var(--bg-light);
+            z-index: 1;
+        }
+        
+        /* Шаги */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .section-title {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
-        
-        .highlight-box {
+        /* График */
+        .chart-container {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
-        .highlight-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-box {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            height: 100%;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .accent-border-left {
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-        }
-        
-        .custom-table {
+        .chart-container img {
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: auto;
+            border-radius: 5px;
         }
         
-        .custom-table thead {
-            background-color: var(--primary-color);
-            color: white;
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .custom-table th, .custom-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #f0f0f0;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .custom-table tbody tr:hover {
-            background-color: rgba(107, 142, 35, 0.05);
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .custom-table tbody tr:last-child td {
-            border-bottom: none;
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
-        .stat-box {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
-        .stat-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
+        .animate-fadeIn { animation: fadeIn 1s ease forwards; }
+        .animate-fadeInUp { animation: fadeInUp 1s ease forwards; }
+        .animate-fadeInDown { animation: fadeInDown 1s ease forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 1s ease forwards; }
+        .animate-fadeInRight { animation: fadeInRight 1s ease forwards; }
         
-        .stat-box h3 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-        
-        .primary-btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .primary-btn:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 50px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background-color: var(--primary-color);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -42px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            border: 4px solid var(--primary-color);
-        }
-        
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .gallery-image {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .risk-item {
-            padding: 15px;
-            margin-bottom: 10px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            display: flex;
-            transition: all 0.3s ease;
-        }
-        
-        .risk-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .back-to-top {
+        /* Навигация */
+        .page-nav {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(107, 142, 35, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.3);
+        }
+        
+        .nav-dot:hover {
+            background-color: var(--accent-color);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .columns { flex-direction: column; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: l2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.5rem; }
+            .section { padding: 2rem 1rem; }
+            .features { grid-template-columns: 1fr; }
+            .products { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .stat-container { flex-direction: column; align-items: center; }
+            .stat-item { width: 90%; }
+            .page-nav { display: none; }
+        }
+        
+        /* Анимация появления элементов при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        
+        /* Кнопка вверх */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
             background-color: var(--primary-color);
             color: white;
-            width: 50px;
-            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
             z-index: 100;
         }
         
@@ -255,691 +543,698 @@
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px);
             background-color: var(--accent-color);
-        }
-        
-        .nav-buttons {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-        
-        .nav-button {
-            background-color: white;
-            color: var(--primary-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .slide-dots {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .slide-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #d1d5db;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .slide-dot.active {
-            background-color: var(--primary-color);
-            transform: scale(1.3);
+            transform: translateY(-3px);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Slide 1: Title Slide -->
-        <section id="slide-1" class="slide min-h-screen flex flex-col justify-center items-center text-center mb-16">
-            <div class="slide-number">1</div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Оливковый сад и эко-туризм</h1>
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-gray-600">Випавская долина, Словения</h2>
-            <div class="w-full max-w-4xl mx-auto mb-12">
-                <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина" class="w-full h-64 md:h-96 object-cover rounded-lg shadow-xl">
-            </div>
-            <p class="text-xl mb-8 max-w-3xl">Инвестиционный проект премиального оливкового сада и эко-туризма</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="stat-box w-48">
-                    <h3>10</h3>
-                    <p>лет горизонт планирования</p>
-                </div>
-                <div class="stat-box w-48">
-                    <h3>4,4</h3>
-                    <p>га общая площадь</p>
-                </div>
-                <div class="stat-box w-48">
-                    <h3>36%</h3>
-                    <p>IRR проекта</p>
-                </div>
-            </div>
-        </section>
+<body>
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <div class="page-nav">
+        <div class="nav-dot active" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+        <div class="nav-dot" data-slide="6"></div>
+        <div class="nav-dot" data-slide="7"></div>
+        <div class="nav-dot" data-slide="8"></div>
+        <div class="nav-dot" data-slide="9"></div>
+        <div class="nav-dot" data-slide="10"></div>
+    </div>
 
-        <!-- Slide 2: Executive Summary -->
-        <section id="slide-2" class="slide min-h-screen py-16">
-            <div class="slide-number">2</div>
-            <h2 class="section-title text-3xl font-bold">Исполнительное резюме</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <div class="accent-border-left mb-8">
-                        <h3 class="text-xl font-semibold mb-4">Локация</h3>
+    <!-- Слайд 1: Титульный -->
+    <section class="section" id="slide1">
+        <div class="slide-number">1</div>
+        <div class="container">
+            <h1 class="animate-fadeInDown">Оливковый сад и эко-туризм</h1>
+            <h2 class="animate-fadeInUp">Випавская долина, Словения</h2>
+            
+            <div class="image-container animate-fadeIn" style="animation-delay: 0.5s;">
+                <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина">
+            </div>
+            
+            <p class="animate-fadeInUp" style="animation-delay: 0.7s;">Инвестиционный проект премиального оливкового сада и эко-туризма</p>
+            
+            <div class="stat-container">
+                <div class="stat-item animate-fadeInUp" style="animation-delay: 0.9s;">
+                    <div class="stat-number">10</div>
+                    <div class="stat-text">лет горизонт планирования</div>
+                </div>
+                <div class="stat-item animate-fadeInUp" style="animation-delay: 1.1s;">
+                    <div class="stat-number">4,4</div>
+                    <div class="stat-text">га общая площадь</div>
+                </div>
+                <div class="stat-item animate-fadeInUp" style="animation-delay: 1.3s;">
+                    <div class="stat-number">36%</div>
+                    <div class="stat-text">IRR проекта</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 2: Исполнительное резюме -->
+    <section class="section" id="slide2">
+        <div class="slide-number">2</div>
+        <div class="container">
+            <h2 class="reveal">Исполнительное резюме</h2>
+            
+            <div class="columns">
+                <div class="column">
+                    <div class="card reveal delay-1">
+                        <h3>Локация</h3>
                         <p>Посёлки Коболи и Вечкоти, Айдовшчина (Випавская долина)</p>
                     </div>
-                    <div class="accent-border-left mb-8">
-                        <h3 class="text-xl font-semibold mb-4">Площадь</h3>
+                    
+                    <div class="card reveal delay-2">
+                        <h3>Площадь</h3>
                         <p>4,404 га (44 041 м²) — изначально 3,04 га виноградник + 1,36 га пашня</p>
                     </div>
-                    <div class="accent-border-left mb-8">
-                        <h3 class="text-xl font-semibold mb-4">Концепция</h3>
+                    
+                    <div class="card reveal delay-3">
+                        <h3>Концепция</h3>
                         <p>Производство премиального extra-virgin оливкового масла (EVOO) + опытный агротуризм с участием гостей в сборе урожая</p>
                     </div>
-                    <div class="highlight-box mt-8">
-                        <h3 class="text-xl font-semibold mb-4">Ключевые аспекты проекта:</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li>Полное преобразование участка в интенсивный оливковый сад с орошением в два этапа (2,2 га + 2,2 га)</li>
-                            <li>Посадка автохтонных сортов Istrska belica (70%) и Buga (30%) — стойких к морозу и ценных низкой кислотностью масла</li>
-                            <li>Использование онлайн-каналов и туристических связей: «Оливковый уик-энд» — гости собирают урожай, снижают затраты на рабочую силу</li>
-                            <li>Сочетание прямых CAP-платежей (≈ 320 €/га) и инвестиционной субсидии CSP Мера 4.1 — 40% расходов на закладку сада и орошение</li>
-                            <li>Точка безубыточности — 3-й год, накопленный денежный поток > 110 тыс. € к 5-му году; NPV (дисконт 8%) ≈ 424 тыс. €</li>
-                        </ul>
-                    </div>
                 </div>
-                <div>
-                    <img src="https://www.slovenia.info/imagine_cache/og/uploads/vodilne_destinacije/gorica/naslovka.jpg" alt="Випавская долина" class="w-full h-64 object-cover rounded-lg shadow-lg mb-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Оливковое масло EVOO" class="w-full h-48 object-cover rounded-lg shadow-md">
-                        <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olive-picking-time.jpg" alt="Сбор оливок" class="w-full h-48 object-cover rounded-lg shadow-md">
-                    </div>
-                    <div class="mt-8">
-                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/cumulative_cash_flow_chart.png" alt="Накопленный денежный поток" class="w-full h-64 object-contain rounded-lg shadow-lg">
+                <div class="column">
+                    <div class="image-container reveal delay-1">
+                        <img src="https://www.vitamia.si/images/com_osgallery/gal-6/original/vipava-02DC0E415E-CFA4-87F9-4A15-498E5AFA3089.jpg" alt="Випавская долина">
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 3: Market Analysis -->
-        <section id="slide-3" class="slide min-h-screen py-16">
-            <div class="slide-number">3</div>
-            <h2 class="section-title text-3xl font-bold">Анализ собственности и рынка</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6">Макро-факторы</h3>
-                    <div class="space-y-6">
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Климат</h4>
-                            <p>Випавская долина — самая тёплая зона запада Словении (ср. 14°C; 1 800 ч солнца)</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Рынок оливкового масла</h4>
-                            <p>Внутреннее производство покрывает лишь ~25% спроса на EVOO в стране</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Туристический поток</h4>
-                            <p>Турпоток растёт (+14% 2023-24 гг.); до Любляны — 1 ч, Триеста — 45 мин, аэропорта Венеции — 2 ч</p>
-                        </div>
-                    </div>
-                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/revenue_structure_chart.png" alt="Структура доходов" class="w-full h-64 object-contain mt-8 rounded-lg shadow-lg">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6">Конкуренты</h3>
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Производитель</th>
-                                <th>Дистанция</th>
-                                <th>Площадь</th>
-                                <th>Цена, €/л</th>
-                                <th>УТП</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Petram Oljka</td>
-                                <td>7 км</td>
-                                <td>6 га</td>
-                                <td>22</td>
-                                <td>Bio, малые партии</td>
-                            </tr>
-                            <tr>
-                                <td>Lisjak Oil</td>
-                                <td>35 км</td>
-                                <td>15 га</td>
-                                <td>24</td>
-                                <td>Награды, люкс-упаковка</td>
-                            </tr>
-                            <tr class="font-semibold">
-                                <td>Наш проект</td>
-                                <td>—</td>
-                                <td>4,4 га</td>
-                                <td>26</td>
-                                <td>Тур-сбор урожая + сторителлинг</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            
+            <h3 class="reveal">Ключевые аспекты проекта:</h3>
+            <ul class="reveal delay-1">
+                <li>Полное преобразование участка в интенсивный оливковый сад с орошением в два этапа (2,2 га + 2,2 га)</li>
+                <li>Посадка автохтонных сортов Istrska belica (70%) и Buga (30%) — стойких к морозу и ценных низкой кислотностью масла</li>
+                <li>Использование онлайн-каналов и туристических связей: «Оливковый уик-энд» — гости собирают урожай, снижают затраты на рабочую силу</li>
+                <li>Сочетание прямых CAP-платежей (≈ 320 €/га) и инвестиционной субсидии CSP Мера 4.1 — 40% расходов на закладку сада и орошение</li>
+                <li>Точка безубыточности — 3-й год, накопленный денежный поток > 110 тыс. € к 5-му году; NPV (дисконт 8%) ≈ 424 тыс. €</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Слайд 3: Анализ собственности и рынка -->
+    <section class="section" id="slide3">
+        <div class="slide-number">3</div>
+        <div class="container">
+            <h2 class="reveal">Анализ собственности и рынка</h2>
+            
+            <div class="columns">
+                <div class="column">
+                    <h3 class="reveal">Макро-факторы</h3>
                     
-                    <div class="mt-8">
-                        <h3 class="text-2xl font-semibold mb-4">Рыночные тренды</h3>
-                        <div class="highlight-box mt-4">
-                            <ul class="list-disc pl-5 space-y-2">
-                                <li>Растущий спрос на органические продукты и эко-туризм</li>
-                                <li>Увеличение интереса к аутентичным гастрономическим впечатлениям</li>
-                                <li>Растущий сегмент премиальных оливковых масел с защищенным происхождением</li>
-                                <li>Повышение осведомленности о пользе оливкового масла для здоровья</li>
-                            </ul>
-                        </div>
+                    <div class="card reveal delay-1">
+                        <h4>Климат</h4>
+                        <p>Випавская долина — самая тёплая зона запада Словении (ср. 14°C; 1 800 ч солнца)</p>
+                    </div>
+                    
+                    <div class="card reveal delay-2">
+                        <h4>Рынок оливкового масла</h4>
+                        <p>Внутреннее производство покрывает лишь ~25% спроса на EVOO в стране</p>
+                    </div>
+                    
+                    <div class="card reveal delay-3">
+                        <h4>Туристический поток</h4>
+                        <p>Турпоток растёт (+14% 2023-24 гг.); до Любляны — 1 ч, Триеста — 45 мин, аэропорта Венеции — 2 ч</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="chart-container reveal delay-1">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/revenue_structure_chart.png" alt="Структура доходов">
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 4: Production Plan -->
-        <section id="slide-4" class="slide min-h-screen py-16">
-            <div class="slide-number">4</div>
-            <h2 class="section-title text-3xl font-bold">Производственный план</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">График посадок</h3>
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Год</th>
-                                <th>Площадь, га</th>
-                                <th>Действие</th>
-                                <th>Бюджет (после гранта)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2025 (Г1)</td>
-                                <td>2,2</td>
-                                <td>Корчёвка лоз, рыхление, компост, посадка 500 дер./га; капельное орошение</td>
-                                <td>23 980 €</td>
-                            </tr>
-                            <tr>
-                                <td>2026 (Г2)</td>
-                                <td>2,2</td>
-                                <td>Повтор для остатка</td>
-                                <td>23 980 €</td>
-                            </tr>
-                            <tr>
-                                <td>2027 (Г3)</td>
-                                <td>—</td>
-                                <td>Уход, формировка, первые тур-выходные</td>
-                                <td>6 820 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <div class="highlight-box mt-8">
-                        <h4 class="text-xl font-semibold mb-4">Ключевые особенности:</h4>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li>Схема: 5 × 4 м (≈ 500 дер./га) — компромисс ручной и механической уборки</li>
-                            <li>Орошение: заглублённая капельная лента; резервуар 30 м³ (скважина + сбор дождевой)</li>
-                            <li>Био-сертификация (опция) — старт 2028 г., переход 3 года</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/olive_varieties_distribution_chart.png" alt="Распределение сортов оливок" class="w-full h-64 object-contain rounded-lg shadow-lg">
+            
+            <h3 class="reveal">Конкуренты</h3>
+            <div class="table-container reveal delay-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Производитель</th>
+                            <th>Дистанция</th>
+                            <th>Площадь</th>
+                            <th>Цена, €/л</th>
+                            <th>УТП</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Petram Oljka</td>
+                            <td>7 км</td>
+                            <td>6 га</td>
+                            <td>22</td>
+                            <td>Bio, малые партии</td>
+                        </tr>
+                        <tr>
+                            <td>Lisjak Oil</td>
+                            <td>35 км</td>
+                            <td>15 га</td>
+                            <td>24</td>
+                            <td>Награды, люкс-упаковка</td>
+                        </tr>
+                        <tr>
+                            <td>Наш проект</td>
+                            <td>—</td>
+                            <td>4,4 га</td>
+                            <td>26</td>
+                            <td>Тур-сбор урожая + сторителлинг</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3 class="reveal">Рыночные тренды</h3>
+            <ul class="reveal delay-1">
+                <li>Растущий спрос на органические продукты и эко-туризм</li>
+                <li>Увеличение интереса к аутентичным гастрономическим впечатлениям</li>
+                <li>Растущий сегмент премиальных оливковых масел с защищенным происхождением</li>
+                <li>Повышение осведомленности о пользе оливкового масла для здоровья</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Слайд 4: Производственный план -->
+    <section class="section" id="slide4">
+        <div class="slide-number">4</div>
+        <div class="container">
+            <h2 class="reveal">Производственный план</h2>
+            
+            <h3 class="reveal">График посадок</h3>
+            <div class="table-container reveal delay-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Год</th>
+                            <th>Площадь, га</th>
+                            <th>Действие</th>
+                            <th>Бюджет (после гранта)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025 (Г1)</td>
+                            <td>2,2</td>
+                            <td>Корчёвка лоз, рыхление, компост, посадка 500 дер./га; капельное орошение</td>
+                            <td>23 980 €</td>
+                        </tr>
+                        <tr>
+                            <td>2026 (Г2)</td>
+                            <td>2,2</td>
+                            <td>Повтор для остатка</td>
+                            <td>23 980 €</td>
+                        </tr>
+                        <tr>
+                            <td>2027 (Г3)</td>
+                            <td>—</td>
+                            <td>Уход, формировка, первые тур-выходные</td>
+                            <td>6 820 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card reveal delay-2">
+                <h4>Ключевые особенности:</h4>
+                <ul>
+                    <li>Схема: 5 × 4 м (≈ 500 дер./га) — компромисс ручной и механической уборки</li>
+                    <li>Орошение: заглублённая капельная лента; резервуар 30 м³ (скважина + сбор дождевой)</li>
+                    <li>Био-сертификация (опция) — старт 2028 г., переход 3 года</li>
+                </ul>
+            </div>
+            
+            <div class="chart-container reveal delay-3">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/olive_varieties_distribution_chart.png" alt="Распределение сортов оливок">
+            </div>
+            
+            <div class="columns">
+                <div class="column">
+                    <div class="card reveal delay-1">
+                        <h3>Istrska belica (70%)</h3>
+                        <p><em>Автохтонный</em></p>
+                        <p>Самый распространенный сорт в Словенской Истрии. Известен очень интенсивной и пряной нотой. Масло очень фруктовое, пахнет свежескошенной травой, зелеными яблоками, оливковыми плодами, миндалем.</p>
+                        <p>Устойчив к низким температурам, что делает его идеальным для местного климата.</p>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Сорта оливок</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Istrska belica (70%)</h4>
-                            <p class="italic text-gray-600 mb-4">Автохтонный</p>
-                            <p>Самый распространенный сорт в Словенской Истрии. Известен очень интенсивной и пряной нотой. Масло очень фруктовое, пахнет свежескошенной травой, зелеными яблоками, оливковыми плодами, миндалем.</p>
-                            <p class="mt-2">Устойчив к низким температурам, что делает его идеальным для местного климата.</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Buga (30%)</h4>
-                            <p class="italic text-gray-600 mb-4">Автохтонный</p>
-                            <p>Сорт из Словенской Истрии. Дерево умеренного размера с пышной кроной. Содержание масла в плодах относительно невысокое.</p>
-                            <p class="mt-2">Известен своим утонченным вкусовым профилем с гармоничным сочетанием пряности и горечи. Содержит высокую концентрацию полифенолов.</p>
-                        </div>
+                <div class="column">
+                    <div class="card reveal delay-2">
+                        <h3>Buga (30%)</h3>
+                        <p><em>Автохтонный</em></p>
+                        <p>Сорт из Словенской Истрии. Дерево умеренного размера с пышной кроной. Содержание масла в плодах относительно невысокое.</p>
+                        <p>Известен своим утонченным вкусовым профилем с гармоничным сочетанием пряности и горечи. Содержит высокую концентрацию полифенолов.</p>
                     </div>
-                    
-                    <h3 class="text-2xl font-semibold mb-4">Кривая урожайности</h3>
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Год</th>
-                                <th>% от полной</th>
-                                <th>Масло, т</th>
-                                <th>Выручка (масло)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2025-27</td>
-                                <td>0</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>2028 (Г4)</td>
-                                <td>20</td>
-                                <td>0,40</td>
-                                <td>4 800 €</td>
-                            </tr>
-                            <tr>
-                                <td>2029</td>
-                                <td>35</td>
-                                <td>0,78</td>
-                                <td>9 360 €</td>
-                            </tr>
-                            <tr>
-                                <td>2030</td>
-                                <td>60</td>
-                                <td>1,19</td>
-                                <td>14 280 €</td>
-                            </tr>
-                            <tr>
-                                <td>2031</td>
-                                <td>80</td>
-                                <td>1,58</td>
-                                <td>18 960 €</td>
-                            </tr>
-                            <tr>
-                                <td>2032+</td>
-                                <td>100</td>
-                                <td>1,98</td>
-                                <td>23 760 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="text-sm text-gray-600 mt-2">Полная урожайность: 0,45 т масла/га × 4,4 га; цена 12 €/кг при прямых продажах.</p>
                 </div>
             </div>
-            <div class="mt-8">
-                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/olive_oil_yield_chart.png" alt="График урожайности оливок" class="w-full h-64 object-contain rounded-lg shadow-lg">
+            
+            <h3 class="reveal">Кривая урожайности</h3>
+            <div class="table-container reveal delay-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Год</th>
+                            <th>% от полной</th>
+                            <th>Масло, т</th>
+                            <th>Выручка (масло)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-27</td>
+                            <td>0</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>2028 (Г4)</td>
+                            <td>20</td>
+                            <td>0,40</td>
+                            <td>4 800 €</td>
+                        </tr>
+                        <tr>
+                            <td>2029</td>
+                            <td>35</td>
+                            <td>0,78</td>
+                            <td>9 360 €</td>
+                        </tr>
+                        <tr>
+                            <td>2030</td>
+                            <td>60</td>
+                            <td>1,19</td>
+                            <td>14 280 €</td>
+                        </tr>
+                        <tr>
+                            <td>2031</td>
+                            <td>80</td>
+                            <td>1,58</td>
+                            <td>18 960 €</td>
+                        </tr>
+                        <tr>
+                            <td>2032+</td>
+                            <td>100</td>
+                            <td>1,98</td>
+                            <td>23 760 €</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
-
-        <!-- Slide 5: Eco-Tourism -->
-        <section id="slide-5" class="slide min-h-screen py-16">
-            <div class="slide-number">5</div>
-            <h2 class="section-title text-3xl font-bold">Эко-туризм</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Инфраструктура</h3>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Модульный домик-приёмная 35 м²</h4>
+            <p class="reveal delay-2"><small>Полная урожайность: 0,45 т масла/га × 4,4 га; цена 12 €/кг при прямых продажах.</small></p>
+            
+            <div class="chart-container reveal delay-3">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/olive_oil_yield_chart.png" alt="График урожайности оливок">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 5: Эко-туризм -->
+    <section class="section" id="slide5">
+        <div class="slide-number">5</div>
+        <div class="container">
+            <h2 class="reveal">Эко-туризм</h2>
+            
+            <div class="columns">
+                <div class="column">
+                    <h3 class="reveal">Инфраструктура</h3>
+                    <div class="features">
+                        <div class="feature reveal delay-1">
+                            <div class="feature-title">Модульный домик-приёмная 35 м²</div>
                             <p>Дегустационный зал, санузел</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">CAPEX 25 000 €</h4>
+                        <div class="feature reveal delay-2">
+                            <div class="feature-title">CAPEX 25 000 €</div>
                             <p>Не требует строительного разрешения при закрытой площади < 30 м² + терраса 15 м²</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">8 парковочных мест</h4>
+                        <div class="feature reveal delay-3">
+                            <div class="feature-title">8 парковочных мест</div>
                             <p>Щебень + солнечная пергола с зарядкой EV (грант Эко-Фонда)</p>
                         </div>
                     </div>
-                    
-                    <h3 class="text-2xl font-semibold mt-8 mb-4">Продукты и цены</h3>
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Продукт</th>
-                                <th>Число гостей</th>
-                                <th>Цена/чел., €</th>
-                                <th>Годовой доход</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>«Собери оливки сам» + обед</td>
-                                <td>300 → 500</td>
-                                <td>150</td>
-                                <td>45–75 тыс. €</td>
-                            </tr>
-                            <tr>
-                                <td>Мастер-класс + дегустация</td>
-                                <td>200 → 400</td>
-                                <td>40</td>
-                                <td>8–16 тыс. €</td>
-                            </tr>
-                            <tr>
-                                <td>Онлайн-магазин масла</td>
-                                <td>—</td>
-                                <td>26 €/л</td>
-                                <td>≥ 50% объёма масла</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="text-sm text-gray-600 mt-2">Туристы-сборщики заменяют проф. бригаду (экономия ~950 €/га).</p>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Уникальный опыт для туристов</h3>
-                    <div class="grid grid-cols-1 gap-6">
-                        <div class="feature-box">
-                            <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h4 class="text-xl font-semibold">Традиции сбора оливок</h4>
-                            <p class="mt-2">Погружение в многовековые традиции сбора оливок с местными экспертами.</p>
-                        </div>
-                        <div class="feature-box">
-                            <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olives-harvesting.jpg" alt="Дегустация оливкового масла" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h4 class="text-xl font-semibold">Дегустация премиального масла</h4>
-                            <p class="mt-2">Мастер-классы по дегустации различных сортов оливкового масла.</p>
-                        </div>
+                <div class="column">
+                    <h3 class="reveal">Продукты и цены</h3>
+                    <div class="table-container reveal delay-1">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Продукт</th>
+                                    <th>Число гостей</th>
+                                    <th>Цена/чел., €</th>
+                                    <th>Годовой доход</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>«Собери оливки сам» + обед</td>
+                                    <td>300 → 500</td>
+                                    <td>150</td>
+                                    <td>45–75 тыс. €</td>
+                                </tr>
+                                <tr>
+                                    <td>Мастер-класс + дегустация</td>
+                                    <td>200 → 400</td>
+                                    <td>40</td>
+                                    <td>8–16 тыс. €</td>
+                                </tr>
+                                <tr>
+                                    <td>Онлайн-магазин масла</td>
+                                    <td>—</td>
+                                    <td>26 €/л</td>
+                                    <td>≥ 50% объёма масла</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    
-                    <h3 class="text-2xl font-semibold mt-8 mb-4">Преимущества агротуризма</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Снижение затрат</h4>
-                            <p>Замена наемной рабочей силы туристами, принимающими участие в сборе урожая</p>
+                    <p class="reveal delay-2">Туристы-сборщики заменяют проф. бригаду (экономия ~950 €/га).</p>
+                </div>
+            </div>
+            
+            <h3 class="reveal">Уникальный опыт для туристов</h3>
+            <div class="columns">
+                <div class="column">
+                    <div class="card reveal delay-1">
+                        <div class="image-container" style="margin-bottom: 1rem;">
+                            <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок">
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Продвижение бренда</h4>
-                            <p>Создание армии амбассадоров бренда через личный опыт и эмоциональную связь</p>
+                        <h4>Традиции сбора оливок</h4>
+                        <p>Погружение в многовековые традиции сбора оливок с местными экспертами.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card reveal delay-2">
+                        <div class="image-container" style="margin-bottom: 1rem;">
+                            <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olives-harvesting.jpg" alt="Дегустация оливкового масла">
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Дополнительный доход</h4>
-                            <p>Создание стабильного потока доходов в период межсезонья и до начала плодоношения</p>
-                        </div>
+                        <h4>Дегустация премиального масла</h4>
+                        <p>Мастер-классы по дегустации различных сортов оливкового масла.</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 6: Financial Plan -->
-        <section id="slide-6" class="slide min-h-screen py-16">
-            <div class="slide-number">6</div>
-            <h2 class="section-title text-3xl font-bold">Финансовый план</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">CAPEX и гранты</h3>
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Статья</th>
-                                <th>Брутто</th>
-                                <th>Грант 40%</th>
-                                <th>Нетто</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Сад — этап 1</td>
-                                <td>39 967 €</td>
-                                <td>15 987 €</td>
-                                <td>23 980 €</td>
-                            </tr>
-                            <tr>
-                                <td>Сад — этап 2</td>
-                                <td>39 967 €</td>
-                                <td>15 987 €</td>
-                                <td>23 980 €</td>
-                            </tr>
-                            <tr>
-                                <td>Домик-приёмная</td>
-                                <td>25 000 €</td>
-                                <td>—</td>
-                                <td>25 000 €</td>
-                            </tr>
-                            <tr class="font-semibold">
-                                <td>Итого</td>
-                                <td>104 934 €</td>
-                                <td>31 974 €</td>
-                                <td>72 960 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <h3 class="text-2xl font-semibold mt-8 mb-4">Годовые OPEX</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Уход сада, СЗР, удобрения</h4>
-                            <p class="text-xl font-bold text-center mt-4">1 250 €/га</p>
+            
+            <h3 class="reveal">Преимущества агротуризма</h3>
+            <div class="features">
+                <div class="feature reveal delay-1">
+                    <div class="feature-title">Снижение затрат</div>
+                    <p>Замена наемной рабочей силы туристами, принимающими участие в сборе урожая</p>
+                </div>
+                <div class="feature reveal delay-2">
+                    <div class="feature-title">Продвижение бренда</div>
+                    <p>Создание армии амбассадоров бренда через личный опыт и эмоциональную связь</p>
+                </div>
+                <div class="feature reveal delay-3">
+                    <div class="feature-title">Дополнительный доход</div>
+                    <p>Создание стабильного потока доходов в период межсезонья и до начала плодоношения</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 6: Финансовый план -->
+    <section class="section" id="slide6">
+        <div class="slide-number">6</div>
+        <div class="container">
+            <h2 class="reveal">Финансовый план</h2>
+            
+            <h3 class="reveal">CAPEX и гранты</h3>
+            <div class="table-container reveal delay-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Статья</th>
+                            <th>Брутто</th>
+                            <th>Грант 40%</th>
+                            <th>Нетто</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Сад — этап 1</td>
+                            <td>39 967 €</td>
+                            <td>15 987 €</td>
+                            <td>23 980 €</td>
+                        </tr>
+                        <tr>
+                            <td>Сад — этап 2</td>
+                            <td>39 967 €</td>
+                            <td>15 987 €</td>
+                            <td>23 980 €</td>
+                        </tr>
+                        <tr>
+                            <td>Домик-приёмная</td>
+                            <td>25 000 €</td>
+                            <td>—</td>
+                            <td>25 000 €</td>
+                        </tr>
+                        <tr>
+                            <td>Итого</td>
+                            <td>104 934 €</td>
+                            <td>31 974 €</td>
+                            <td>72 960 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="columns">
+                <div class="column">
+                    <h3 class="reveal">Годовые OPEX</h3>
+                    <div class="features">
+                        <div class="feature reveal delay-1">
+                            <div class="feature-title">Уход сада, СЗР, удобрения</div>
+                            <p>1 250 €/га</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Логистика/аренда техники</h4>
-                            <p class="text-xl font-bold text-center mt-4">300 €/га</p>
+                        <div class="feature reveal delay-2">
+                            <div class="feature-title">Логистика/аренда техники</div>
+                            <p>300 €/га</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-lg font-semibold mb-2">Расходы на гостей</h4>
-                            <p class="text-xl font-bold text-center mt-4">35% тур-выручки</p>
+                        <div class="feature reveal delay-3">
+                            <div class="feature-title">Расходы на гостей</div>
+                            <p>35% тур-выручки</p>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Десятилетний денежный поток</h3>
-                    <table class="custom-table text-sm">
-                        <thead>
-                            <tr>
-                                <th>Год</th>
-                                <th>Выручка</th>
-                                <th>Расходы+Инвестиции</th>
-                                <th>Чистый поток</th>
-                                <th>Накопленный</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>0</td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td>0 €</td>
-                                <td>0 €</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>704 €</td>
-                                <td>23 980 €</td>
-                                <td>-23 276 €</td>
-                                <td>-23 276 €</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>31 408 €</td>
-                                <td>23 980 €</td>
-                                <td>7 428 €</td>
-                                <td>-15 848 €</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>46 408 €</td>
-                                <td>6 820 €</td>
-                                <td>39 588 €</td>
-                                <td>23 740 €</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>81 160 €</td>
-                                <td>6 820 €</td>
-                                <td>74 340 €</td>
-                                <td>98 080 €</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>89 724 €</td>
-                                <td>6 820 €</td>
-                                <td>82 904 €</td>
-                                <td>180 984 €</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>100 664 €</td>
-                                <td>6 820 €</td>
-                                <td>93 844 €</td>
-                                <td>274 828 €</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>110 416 €</td>
-                                <td>6 820 €</td>
-                                <td>103 596 €</td>
-                                <td>378 424 €</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>120 168 €</td>
-                                <td>6 820 €</td>
-                                <td>113 348 €</td>
-                                <td>491 772 €</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>125 168 €</td>
-                                <td>6 820 €</td>
-                                <td>118 348 €</td>
-                                <td>610 120 €</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>130 168 €</td>
-                                <td>6 820 €</td>
-                                <td>123 348 €</td>
-                                <td>733 468 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                        <div class="stat-box">
-                            <h3>424 тыс. €</h3>
-                            <p>NPV (при ставке дисконтирования 8%)</p>
-                        </div>
-                        <div class="stat-box">
-                            <h3>36%</h3>
-                            <p>IRR проекта</p>
-                        </div>
+                <div class="column">
+                    <div class="chart-container reveal delay-2">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/investment_structure_pie_chart.png" alt="Структура инвестиций">
                     </div>
                 </div>
             </div>
-            <div class="mt-8">
-                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/revenue_and_expenses_chart.png" alt="Доходы и расходы по годам" class="w-full h-64 object-contain rounded-lg shadow-lg">
+            
+            <h3 class="reveal">Десятилетний денежный поток</h3>
+            <div class="table-container reveal delay-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Год</th>
+                            <th>Выручка</th>
+                            <th>Расходы+Инвестиции</th>
+                            <th>Чистый поток</th>
+                            <th>Накопленный</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>0 €</td>
+                            <td>0 €</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>704 €</td>
+                            <td>23 980 €</td>
+                            <td>-23 276 €</td>
+                            <td>-23 276 €</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>31 408 €</td>
+                            <td>23 980 €</td>
+                            <td>7 428 €</td>
+                            <td>-15 848 €</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>46 408 €</td>
+                            <td>6 820 €</td>
+                            <td>39 588 €</td>
+                            <td>23 740 €</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>81 160 €</td>
+                            <td>6 820 €</td>
+                            <td>74 340 €</td>
+                            <td>98 080 €</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>89 724 €</td>
+                            <td>6 820 €</td>
+                            <td>82 904 €</td>
+                            <td>180 984 €</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>100 664 €</td>
+                            <td>6 820 €</td>
+                            <td>93 844 €</td>
+                            <td>274 828 €</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>110 416 €</td>
+                            <td>6 820 €</td>
+                            <td>103 596 €</td>
+                            <td>378 424 €</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>120 168 €</td>
+                            <td>6 820 €</td>
+                            <td>113 348 €</td>
+                            <td>491 772 €</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>125 168 €</td>
+                            <td>6 820 €</td>
+                            <td>118 348 €</td>
+                            <td>610 120 €</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>130 168 €</td>
+                            <td>6 820 €</td>
+                            <td>123 348 €</td>
+                            <td>733 468 €</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
-
-        <!-- Slide 7: Marketing and Sales -->
-        <section id="slide-7" class="slide min-h-screen py-16">
-            <div class="slide-number">7</div>
-            <h2 class="section-title text-3xl font-bold">Маркетинг и продажи</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Брендинг</h3>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Домены</h4>
+            
+            <div class="stat-container">
+                <div class="stat-item reveal delay-1">
+                    <div class="stat-number">424 тыс. €</div>
+                    <div class="stat-text">NPV (при ставке дисконтирования 8%)</div>
+                </div>
+                <div class="stat-item reveal delay-2">
+                    <div class="stat-number">36%</div>
+                    <div class="stat-text">IRR проекта</div>
+                </div>
+                <div class="stat-item reveal delay-3">
+                    <div class="stat-number">3 года</div>
+                    <div class="stat-text">Срок окупаемости</div>
+                </div>
+            </div>
+            
+            <div class="chart-container reveal delay-3">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/revenue_and_expenses_chart.png" alt="Доходы и расходы по годам">
+            </div>
+            
+            <div class="chart-container reveal delay-4">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/cumulative_cash_flow_chart.png" alt="Накопленный денежный поток">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 7: Маркетинг и продажи -->
+    <section class="section" id="slide7">
+        <div class="slide-number">7</div>
+        <div class="container">
+            <h2 class="reveal">Маркетинг и продажи</h2>
+            
+            <div class="columns">
+                <div class="column">
+                    <h3 class="reveal">Брендинг</h3>
+                    <div class="features">
+                        <div class="feature reveal delay-1">
+                            <div class="feature-title">Домены</div>
                             <p>Регистрируем домены .com + .si + .eu</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Легенда бренда</h4>
+                        <div class="feature reveal delay-2">
+                            <div class="feature-title">Легенда бренда</div>
                             <p>«Самые северные оливки Средиземноморья»</p>
                         </div>
-                        <div class="feature-box">
-                            <h4 class="text-xl font-semibold mb-2">Визуальная идентичность</h4>
+                        <div class="feature reveal delay-3">
+                            <div class="feature-title">Визуальная идентичность</div>
                             <p>Чистый, экологичный дизайн с акцентом на премиальность и аутентичность</p>
                         </div>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-4">Каналы продвижения</h3>
-                            <ul class="list-disc pl-5 space-y-2 bg-white p-4 rounded-lg shadow-sm">
-                                <li>Instagram/TikTok (рили harvest)</li>
-                                <li>Meta-реклама туров</li>
-                                <li>OTA (GetYourGuide, Viator)</li>
-                                <li>Email-маркетинг для клиентской базы</li>
-                                <li>Word-of-mouth и рекомендации</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-4">Партнёрства</h3>
-                            <ul class="list-disc pl-5 space-y-2 bg-white p-4 rounded-lg shadow-sm">
-                                <li>Винодельни Випавы</li>
-                                <li>Местные отели и рестораны</li>
-                                <li>Гастрономические туры</li>
-                                <li>Деликатесные магазины</li>
-                                <li>Туристические агентства</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-                <div>
-                    <div class="grid grid-cols-1 gap-8">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-4">Продукты</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="feature-box flex flex-col items-center text-center">
-                                    <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Премиальное EVOO" class="w-24 h-24 object-cover rounded-full mb-4">
-                                    <h4 class="text-lg font-semibold">Премиальное EVOO</h4>
-                                </div>
-                                <div class="feature-box flex flex-col items-center text-center">
-                                    <img src="https://madeinspain.store/wp-content/uploads/2023/10/aove-oro-la-senda-seleccion-etiqueta-blanca-aove-premium.jpeg" alt="Подарочные наборы" class="w-24 h-24 object-cover rounded-full mb-4">
-                                    <h4 class="text-lg font-semibold">Подарочные наборы</h4>
-                                </div>
-                                <div class="feature-box flex flex-col items-center text-center">
-                                    <img src="https://critida.com/wp-content/uploads/2024/01/ORGANIC-500ML-scaled.jpg" alt="Органическая линейка" class="w-24 h-24 object-cover rounded-full mb-4">
-                                    <h4 class="text-lg font-semibold">Органическая линейка</h4>
-                                </div>
-                                <div class="feature-box flex flex-col items-center text-center">
-                                    <img src="https://morganic.ru/image/catalog/Pons/004/olivkovoe-maslo-pons-oleum-primum-evoo-premium-v-korobke-ispaniya-1-5-l.jpg" alt="Сезонные лимитированные выпуски" class="w-24 h-24 object-cover rounded-full mb-4">
-                                    <h4 class="text-lg font-semibold">Лимитированные выпуски</h4>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-4">Стратегия ценообразования</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="feature-box">
-                                    <h4 class="text-lg font-semibold mb-2">Премиальное позиционирование</h4>
-                                    <p>Установка цен выше среднего рынка для подчеркивания эксклюзивности и высокого качества продукта</p>
-                                </div>
-                                <div class="feature-box">
-                                    <h4 class="text-lg font-semibold mb-2">Прямые продажи</h4>
-                                    <p>Приоритет прямых продаж конечным потребителям для максимизации маржинальности</p>
-                                </div>
-                                <div class="feature-box">
-                                    <h4 class="text-lg font-semibold mb-2">Пакетные предложения</h4>
-                                    <p>Создание комплексных туристических предложений, объединяющих активности и продукты</p>
-                                </div>
-                                <div class="feature-box">
-                                    <h4 class="text-lg font-semibold mb-2">Сезонность и лимитированность</h4>
-                                    <p>Использование сезонных предложений и ограниченных выпусков для создания эксклюзивности</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="column">
+                    <h3 class="reveal">Каналы продвижения</h3>
+                    <ul class="reveal delay-1">
+                        <li>Instagram/TikTok (рили harvest)</li>
+                        <li>Meta-реклама туров</li>
+                        <li>OTA (GetYourGuide, Viator)</li>
+                        <li>Email-маркетинг для клиентской базы</li>
+                        <li>Word-of-mouth и рекомендации</li>
+                    </ul>
+                    
+                    <h3 class="reveal delay-2">Партнёрства</h3>
+                    <ul class="reveal delay-3">
+                        <li>Винодельни Випавы</li>
+                        <li>Местные отели и рестораны</li>
+                        <li>Гастрономические туры</li>
+                        <li>Деликатесные магазины</li>
+                        <li>Туристические агентства</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 8: Risks and Mitigation -->
-        <section id="slide-8" class="slide min-h-screen py-16">
-            <div class="slide-number">8</div>
-            <h2 class="section-title text-3xl font-bold">Риски и меры</h2>
-            <div class="mb-8">
-                <table class="custom-table">
+            
+            <h3 class="reveal">Продукты</h3>
+            <div class="products">
+                <div class="product reveal delay-1">
+                    <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Премиальное EVOO">
+                    <div class="product-title">Премиальное EVOO</div>
+                </div>
+                <div class="product reveal delay-2">
+                    <img src="https://madeinspain.store/wp-content/uploads/2023/10/aove-oro-la-senda-seleccion-etiqueta-blanca-aove-premium.jpeg" alt="Подарочные наборы">
+                    <div class="product-title">Подарочные наборы</div>
+                </div>
+                <div class="product reveal delay-3">
+                    <img src="https://critida.com/wp-content/uploads/2024/01/ORGANIC-500ML-scaled.jpg" alt="Органическая линейка">
+                    <div class="product-title">Органическая линейка</div>
+                </div>
+                <div class="product reveal delay-4">
+                    <img src="https://morganic.ru/image/catalog/Pons/004/olivkovoe-maslo-pons-oleum-primum-evoo-premium-v-korobke-ispaniya-1-5-l.jpg" alt="Лимитированные выпуски">
+                    <div class="product-title">Лимитированные выпуски</div>
+                </div>
+            </div>
+            
+            <h3 class="reveal">Стратегия ценообразования</h3>
+            <div class="features">
+                <div class="feature reveal delay-1">
+                    <div class="feature-title">Премиальное позиционирование</div>
+                    <p>Установка цен выше среднего рынка для подчеркивания эксклюзивности и высокого качества продукта</p>
+                </div>
+                <div class="feature reveal delay-2">
+                    <div class="feature-title">Прямые продажи</div>
+                    <p>Приоритет прямых продаж конечным потребителям для максимизации маржинальности</p>
+                </div>
+                <div class="feature reveal delay-3">
+                    <div class="feature-title">Пакетные предложения</div>
+                    <p>Создание комплексных туристических предложений, объединяющих активности и продукты</p>
+                </div>
+                <div class="feature reveal delay-4">
+                    <div class="feature-title">Сезонность и лимитированность</div>
+                    <p>Использование сезонных предложений и ограниченных выпусков для создания эксклюзивности</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 8: Риски и меры -->
+    <section class="section" id="slide8">
+        <div class="slide-number">8</div>
+        <div class="container">
+            <h2 class="reveal">Риски и меры</h2>
+            
+            <div class="table-container reveal delay-1">
+                <table>
                     <thead>
                         <tr>
                             <th>Риск</th>
@@ -967,225 +1262,214 @@
                 </table>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Управление климатическими рисками</h3>
-                    <div class="space-y-4">
-                        <div class="risk-item">
-                            <div class="mr-4 text-2xl text-yellow-600">
-                                <i class="fas fa-snowflake"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Защита от заморозков</h4>
-                                <p>Сорт Istrska belica способен выдерживать температуры до -10°C, что делает его идеальным для климата Випавской долины. Дополнительно будут применяться защитные обертывания молодых деревьев в холодные периоды.</p>
-                            </div>
-                        </div>
-                        <div class="risk-item">
-                            <div class="mr-4 text-2xl text-yellow-600">
-                                <i class="fas fa-tint-slash"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Борьба с засухой</h4>
-                                <p>Внедрение высокоэффективной системы капельного орошения, работающей на солнечной энергии. Дополнительно используются методы мульчирования для сохранения влаги и регулярный мониторинг влажности почвы.</p>
-                            </div>
-                        </div>
+            <div class="columns">
+                <div class="column">
+                    <h3 class="reveal">Управление климатическими рисками</h3>
+                    <div class="card reveal delay-1">
+                        <h4>Защита от заморозков</h4>
+                        <p>Сорт Istrska belica способен выдерживать температуры до -10°C, что делает его идеальным для климата Випавской долины. Дополнительно будут применяться защитные обертывания молодых деревьев в холодные периоды.</p>
+                    </div>
+                    
+                    <div class="card reveal delay-2">
+                        <h4>Борьба с засухой</h4>
+                        <p>Внедрение высокоэффективной системы капельного орошения, работающей на солнечной энергии. Дополнительно используются методы мульчирования для сохранения влаги и регулярный мониторинг влажности почвы.</p>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Минимизация рыночных рисков</h3>
-                    <div class="space-y-4">
-                        <div class="risk-item">
-                            <div class="mr-4 text-2xl text-yellow-600">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Колебания цен на оливковое масло</h4>
-                                <p>Фокус на премиальном сегменте и прямых продажах, где ценовые колебания меньше влияют на маржинальность. Диверсификация доходов через туристические предложения, которые менее подвержены ценовым рискам.</p>
-                            </div>
-                        </div>
-                        <div class="risk-item">
-                            <div class="mr-4 text-2xl text-yellow-600">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Нехватка рабочей силы</h4>
-                                <p>Инновационная модель «Оливковый уик-энд», где туристы участвуют в сборе урожая, решая проблему нехватки работников и создавая дополнительный источник дохода одновременно.</p>
-                            </div>
-                        </div>
+                <div class="column">
+                    <h3 class="reveal">Минимизация рыночных рисков</h3>
+                    <div class="card reveal delay-1">
+                        <h4>Колебания цен на оливковое масло</h4>
+                        <p>Фокус на премиальном сегменте и прямых продажах, где ценовые колебания меньше влияют на маржинальность. Диверсификация доходов через туристические предложения, которые менее подвержены ценовым рискам.</p>
+                    </div>
+                    
+                    <div class="card reveal delay-2">
+                        <h4>Нехватка рабочей силы</h4>
+                        <p>Инновационная модель «Оливковый уик-энд», где туристы участвуют в сборе урожая, решая проблему нехватки работников и создавая дополнительный источник дохода одновременно.</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 9: Roadmap -->
-        <section id="slide-9" class="slide min-h-screen py-16">
-            <div class="slide-number">9</div>
-            <h2 class="section-title text-3xl font-bold">Дорожная карта</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold">III кв. 2025</h3>
+            
+            <div class="chart-container reveal delay-3">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/npv_and_irr_visualization.png" alt="NPV и IRR проекта">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Слайд 9: Дорожная карта -->
+    <section class="section" id="slide9">
+        <div class="slide-number">9</div>
+        <div class="container">
+            <h2 class="reveal">Дорожная карта</h2>
+            
+            <div class="roadmap">
+                <div class="roadmap-item" style="--order: 1;">
+                    <h3>III кв. 2025</h3>
                     <p>Очистка и посадка 1-го этапа; заказ домика</p>
                 </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold">II кв. 2026</h3>
+                <div class="roadmap-item" style="--order: 2;">
+                    <h3>II кв. 2026</h3>
                     <p>Посадка 2-го этапа; домик открыт; онлайн-бронирование</p>
                 </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold">Осень 2027</h3>
+                <div class="roadmap-item" style="--order: 3;">
+                    <h3>Осень 2027</h3>
                     <p>Первый harvest-weekend с блогерами (200 гостей)</p>
                 </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold">2028</h3>
+                <div class="roadmap-item" style="--order: 4;">
+                    <h3>2028</h3>
                     <p>Начало био-конверсии; 0,4 т масла</p>
                 </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold">2032</h3>
+                <div class="roadmap-item" style="--order: 5;">
+                    <h3>2032</h3>
                     <p>Полный урожай — 2 т масла; > 1 000 гостей; план расширения</p>
                 </div>
             </div>
             
-            <h3 class="text-2xl font-semibold mt-12 mb-6">Следующие шаги</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                <div class="step-item">
+            <h3 class="reveal">Следующие шаги</h3>
+            <div class="steps">
+                <div class="step reveal delay-1">
                     <div class="step-number">1</div>
                     <h4>Финальный агрохим- и гидроанализ</h4>
                     <p class="step-date">Июнь 2025</p>
                 </div>
-                <div class="step-item">
+                <div class="step reveal delay-2">
                     <div class="step-number">2</div>
                     <h4>Заявка CSP 4.1</h4>
                     <p class="step-date">Сентябрь 2025</p>
                 </div>
-                <div class="step-item">
+                <div class="step reveal delay-3">
                     <div class="step-number">3</div>
                     <h4>Грант Эко-фонда на солнечный насос</h4>
                     <p class="step-date">Январь 2026</p>
                 </div>
-                <div class="step-item">
+                <div class="step reveal delay-4">
                     <div class="step-number">4</div>
                     <h4>Контракт с питомником на 2 000 саженцев</h4>
                     <p class="step-date">Июль 2025</p>
                 </div>
-                <div class="step-item">
+                <div class="step reveal delay-5">
                     <div class="step-number">5</div>
                     <h4>Предпродажа турпакетов на сбор урожая</h4>
                     <p class="step-date">Март 2026</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Slide 10: Gallery -->
-        <section id="slide-10" class="slide min-h-screen py-16">
-            <div class="slide-number">10</div>
-            <h2 class="section-title text-3xl font-bold">Фотогалерея</h2>
-            <div class="image-gallery">
-                <div class="gallery-image">
-                    <img src="https://www.vitamia.si/images/com_osgallery/gal-6/original/vipava-02DC0E415E-CFA4-87F9-4A15-498E5AFA3089.jpg" alt="Випавская долина" class="w-full h-60 object-cover">
+        </div>
+    </section>
+    
+    <!-- Слайд 10: Фотогалерея и контакты -->
+    <section class="section" id="slide10">
+        <div class="slide-number">10</div>
+        <div class="container">
+            <h2 class="reveal">Фотогалерея</h2>
+            
+            <div class="columns">
+                <div class="column">
+                    <div class="image-container reveal delay-1">
+                        <img src="https://www.vitamia.si/images/com_osgallery/gal-6/original/vipava-02DC0E415E-CFA4-87F9-4A15-498E5AFA3089.jpg" alt="Випавская долина">
+                    </div>
+                    <div class="image-container reveal delay-3">
+                        <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок">
+                    </div>
                 </div>
-                <div class="gallery-image">
-                    <img src="https://www.slovenia.info/imagine_cache/og/uploads/vodilne_destinacije/gorica/naslovka.jpg" alt="Випавская долина пейзаж" class="w-full h-60 object-cover">
-                </div>
-                <div class="gallery-image">
-                    <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olive-picking-time.jpg" alt="Сбор оливок" class="w-full h-60 object-cover">
-                </div>
-                <div class="gallery-image">
-                    <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olives-harvesting.jpg" alt="Урожай оливок" class="w-full h-60 object-cover">
-                </div>
-                <div class="gallery-image">
-                    <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок вручную" class="w-full h-60 object-cover">
-                </div>
-                <div class="gallery-image">
-                    <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Оливковое масло" class="w-full h-60 object-cover">
+                <div class="column">
+                    <div class="image-container reveal delay-2">
+                        <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olive-picking-time.jpg" alt="Оливковый сад">
+                    </div>
+                    <div class="image-container reveal delay-4">
+                        <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина панорама">
+                    </div>
                 </div>
             </div>
             
-            <div class="mt-16 text-center">
-                <h3 class="text-2xl font-semibold mb-4">Основные финансовые показатели</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="stat-box">
-                        <h3>424 тыс. €</h3>
-                        <p>NPV (8% дисконт)</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>36%</h3>
-                        <p>IRR проекта</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>3 года</h3>
-                        <p>Точка безубыточности</p>
-                    </div>
+            <h3 class="reveal">Основные финансовые показатели</h3>
+            <div class="stat-container">
+                <div class="stat-item reveal delay-1">
+                    <div class="stat-number">424 тыс. €</div>
+                    <div class="stat-text">NPV (8% дисконт)</div>
                 </div>
+                <div class="stat-item reveal delay-2">
+                    <div class="stat-number">36%</div>
+                    <div class="stat-text">IRR проекта</div>
+                </div>
+                <div class="stat-item reveal delay-3">
+                    <div class="stat-number">3 года</div>
+                    <div class="stat-text">Точка безубыточности</div>
+                </div>
+                <div class="stat-item reveal delay-4">
+                    <div class="stat-number">733 тыс. €</div>
+                    <div class="stat-text">Накопленный денежный поток за 10 лет</div>
                 </div>
             </div>
-        </section>
-    </div>
-    
-    <!-- Navigation Dots -->
-    <div class="slide-dots">
-        <div class="slide-dot active" data-slide="slide-1"></div>
-        <div class="slide-dot" data-slide="slide-2"></div>
-        <div class="slide-dot" data-slide="slide-3"></div>
-        <div class="slide-dot" data-slide="slide-4"></div>
-        <div class="slide-dot" data-slide="slide-5"></div>
-        <div class="slide-dot" data-slide="slide-6"></div>
-        <div class="slide-dot" data-slide="slide-7"></div>
-        <div class="slide-dot" data-slide="slide-8"></div>
-        <div class="slide-dot" data-slide="slide-9"></div>
-        <div class="slide-dot" data-slide="slide-10"></div>
-    </div>
-    
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+            
+            <div class="card reveal delay-5" style="text-align: center; margin-top: 3rem;">
+                <h3>Контактная информация</h3>
+                <p><strong>Email:</strong> info@olivegrove-slovenia.com</p>
+                <p><strong>Телефон:</strong> +386 XX XXX XXX</p>
+                <p><strong>Адрес:</strong> Посёлки Коболи и Вечкоти, Айдовшчина, Словения</p>
+            </div>
+        </div>
+    </section>
     
     <script>
-        // Navigation Dots
-        const slideDots = document.querySelectorAll('.slide-dot');
-        slideDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideId = dot.getAttribute('data-slide');
-                document.getElementById(slideId).scrollIntoView({behavior: 'smooth'});
-            });
-        });
-        
-        // Active dot on scroll
-        window.addEventListener('scroll', () => {
-            const slides = document.querySelectorAll('.slide');
-            let currentSlideId = '';
-            
-            slides.forEach(slide => {
-                const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (window.scrollY >= slideTop - 200 && window.scrollY < slideTop + slideHeight - 200) {
-                    currentSlideId = slide.id;
+        // Анимация при скролле
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
                 }
-            });
-            
-            slideDots.forEach(dot => {
-                if (dot.getAttribute('data-slide') === currentSlideId) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-            
-            // Show/hide back to top button
-            const backToTop = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
             }
-        });
+        }
         
-        // Back to top button
-        document.getElementById('back-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Навигационные точки
+        const navDots = document.querySelectorAll('.nav-dot');
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideNum = dot.getAttribute('data-slide');
+                const targetSlide = document.getElementById(`slide${slideNum}`);
+                targetSlide.scrollIntoView({ behavior: 'smooth' });
             });
         });
+        
+        // Отслеживание активного слайда при скролле
+        function updateActiveDot() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150 && rect.bottom >= 150) {
+                    const slideNum = index + 1;
+                    navDots.forEach(dot => {
+                        dot.classList.remove('active');
+                    });
+                    document.querySelector(`.nav-dot[data-slide="${slideNum}"]`).classList.add('active');
+                }
+            });
+        }
+        
+        // Кнопка "Вверх"
+        const backToTopBtn = document.getElementById('backToTop');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        function toggleBackToTopBtn() {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("scroll", updateActiveDot);
+        window.addEventListener("scroll", toggleBackToTopBtn);
+        
+        // Запуск функций при загрузке страницы
+        reveal();
+        updateActiveDot();
+        toggleBackToTopBtn();
     </script>
 </body>
 </html>
