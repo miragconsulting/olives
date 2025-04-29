@@ -1,137 +1,179 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оливковый сад и эко-туризм в Словении | Интерактивная презентация</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <title>Оливковый сад и эко-туризм в Словении | Полная презентация</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
     <style>
         :root {
             --primary-color: #6B8E23;
-            --secondary-color: #8B9E6B;
+            --primary-light: #8FB239;
+            --primary-dark: #556B1B;
             --accent-color: #D4AF37;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #F9F7F1;
+            --accent-light: #E6C55A;
+            --accent-dark: #B3931F;
+            --bg-color: #F9F8F4;
+            --bg-light: #FFFFFF;
             --bg-dark: #2C3E50;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             scroll-behavior: smooth;
         }
         
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
+            color: var(--text-color);
+            background-color: var(--bg-color);
             overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
         }
         
         .section {
             min-height: 100vh;
-            padding: 3rem 1rem;
+            padding: 60px 20px;
             position: relative;
-            border-bottom: 2px solid rgba(107, 142, 35, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 20px;
+        }
+        
+        .section:nth-child(even) {
+            background-color: var(--bg-light);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
         }
         
-        .slide-number {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 0.8em;
+            position: relative;
         }
         
-        /* Заголовки */
         h1 {
             font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
+            margin-bottom: 0.2em;
+            color: var(--primary-color);
         }
         
         h1::after {
             content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 100px;
-            height: 4px;
+            display: block;
+            width: 120px;
+            height: 3px;
             background-color: var(--accent-color);
-            transition: width 0.5s ease;
-        }
-        
-        h1:hover::after {
-            width: 100%;
+            margin-top: 15px;
         }
         
         h2 {
             font-size: 2.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
+            margin-top: 1em;
+            margin-bottom: 1em;
             position: relative;
-            padding-bottom: 10px;
         }
         
         h2::after {
             content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 80px;
+            display: block;
+            width: 100px;
             height: 3px;
             background-color: var(--accent-color);
+            margin-top: 10px;
         }
         
         h3 {
             font-size: 1.8rem;
-            margin-top: 1.5rem;
-            color: var(--secondary-color);
+            color: var(--primary-dark);
+            margin-top: 1.5em;
         }
         
         h4 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-top: 1.2em;
+        }
+        
+        p {
+            margin-bottom: 1.2em;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        
+        ul, ol {
+            margin-left: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+            font-size: 1.1rem;
+        }
+        
+        a {
             color: var(--primary-color);
-            margin-top: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Изображения */
+        .img-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+            transition: var(--transition);
+        }
+        
+        .img-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .img-container:hover img {
+            transform: scale(1.03);
         }
         
         /* Таблицы */
         .table-container {
             overflow-x: auto;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-radius: 10px;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
+            background-color: var(--bg-light);
         }
         
         thead {
@@ -140,180 +182,121 @@
         }
         
         th, td {
-            padding: 12px 15px;
+            padding: 15px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         tr:hover {
             background-color: rgba(107, 142, 35, 0.05);
         }
         
-        /* Карточки */
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--primary-color);
-            opacity: 0.7;
-        }
-        
-        /* Изображения */
-        .image-container {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 1.5rem 0;
-        }
-        
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .image-container:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Колонки */
-        .columns {
+        /* Счетчики и статистика */
+        .stats-container {
             display: flex;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .column {
-            flex: 1;
-        }
-        
-        /* Статистика */
-        .stat-container {
-            display: flex;
+            justify-content: space-around;
             flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            margin: 2rem 0;
+            margin: 40px 0;
         }
         
         .stat-item {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            min-width: 200px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            padding: 25px;
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            margin: 10px;
+            transition: var(--transition);
         }
         
         .stat-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
         }
         
         .stat-text {
+            font-size: 1rem;
             color: var(--text-light);
         }
         
-        /* Особенности */
-        .features {
+        /* Карточки */
+        .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            gap: 25px;
+            margin: 30px 0;
         }
         
-        .feature {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--accent-color);
-        }
-        
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .feature-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-        }
-        
-        /* Продукты */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .product {
-            background-color: white;
-            border-radius: 10px;
+        .card {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
         }
         
-        .product:hover {
+        .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .product img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .product-title {
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
+        .card h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
             color: var(--primary-color);
+        }
+        
+        .card-accent {
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .card-primary {
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        /* Графики */
+        .chart-container {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+            transition: var(--transition);
+        }
+        
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chart-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
         
         /* Дорожная карта */
         .roadmap {
             position: relative;
             padding-left: 50px;
-            margin: 2rem 0;
+            margin: 40px 0;
         }
         
         .roadmap::before {
             content: '';
             position: absolute;
-            left: 15px;
+            left: 20px;
             top: 0;
             height: 100%;
             width: 4px;
@@ -323,46 +306,49 @@
         
         .roadmap-item {
             position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1rem;
-            animation: fadeInRight 0.5s ease forwards;
-            opacity: 0;
-            animation-delay: calc(var(--order) * 0.2s);
+            margin-bottom: 40px;
         }
         
         .roadmap-item::before {
             content: '';
             position: absolute;
-            left: -43px;
-            top: 8px;
-            width: 20px;
-            height: 20px;
+            left: -50px;
+            top: 10px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             background-color: var(--accent-color);
-            border: 4px solid var(--bg-light);
+            border: 4px solid var(--bg-color);
             z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .roadmap-item:hover::before {
+            background-color: var(--accent-light);
+            transform: scale(1.2);
         }
         
         /* Шаги */
-        .steps {
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 25px;
+            margin: 40px 0;
         }
         
-        .step {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .step-item {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px 20px 20px;
+            box-shadow: var(--shadow);
             position: relative;
-            transition: transform 0.3s ease;
+            text-align: center;
+            transition: var(--transition);
         }
         
-        .step:hover {
+        .step-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .step-number {
@@ -370,8 +356,8 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             background-color: var(--primary-color);
             color: white;
             border-radius: 50%;
@@ -379,151 +365,61 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
         }
         
-        /* График */
-        .chart-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .chart-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .animate-fadeIn { animation: fadeIn 1s ease forwards; }
-        .animate-fadeInUp { animation: fadeInUp 1s ease forwards; }
-        .animate-fadeInDown { animation: fadeInDown 1s ease forwards; }
-        .animate-fadeInLeft { animation: fadeInLeft 1s ease forwards; }
-        .animate-fadeInRight { animation: fadeInRight 1s ease forwards; }
-        
-        /* Навигация */
-        .page-nav {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .nav-dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: rgba(107, 142, 35, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-dot.active {
-            background-color: var(--primary-color);
-            transform: scale(1.3);
-        }
-        
-        .nav-dot:hover {
+        .step-item:hover .step-number {
             background-color: var(--accent-color);
+            transform: translateX(-50%) scale(1.1);
         }
         
-        /* Адаптивность */
-        @media (max-width: 1024px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .columns { flex-direction: column; }
+        /* Продуктовая галерея */
+        .products-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
         
-        @media (max-width: 768px) {
-            h1 { font-size: l2rem; }
-            h2 { font-size: 1.8rem; }
-            h3 { font-size: 1.5rem; }
-            .section { padding: 2rem 1rem; }
-            .features { grid-template-columns: 1fr; }
-            .products { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .stat-container { flex-direction: column; align-items: center; }
-            .stat-item { width: 90%; }
-            .page-nav { display: none; }
+        .product-item {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
         }
         
-        /* Анимация появления элементов при скролле */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
+        .product-item:hover img {
+            transform: scale(1.1);
+        }
         
-        /* Кнопка вверх */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
+        .product-title {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Слайдер и навигация */
+        .section-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             width: 40px;
             height: 40px;
             background-color: var(--primary-color);
@@ -532,63 +428,383 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+        
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-menu.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
             cursor: pointer;
+        }
+        
+        .side-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+        
+        .side-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(107, 142, 35, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .side-dot.active, .side-dot:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
         }
         
-        .back-to-top.visible {
+        .scroll-top.show {
             opacity: 1;
+            visibility: visible;
         }
         
-        .back-to-top:hover {
+        .scroll-top:hover {
             background-color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+        }
+        
+        /* Columns layout */
+        .columns {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Animation classes */
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        
+        /* Media Queries */
+        @media screen and (max-width: 1024px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .side-dots {
+                right: 10px;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 40px 15px;
+            }
+            
+            .columns {
+                flex-direction: column;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-dots {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+            }
+            
+            .nav-links.show {
+                transform: translateY(0);
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h1::after, h2::after {
+                width: 80px;
+            }
+            
+            .table-container {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 15px;
+            }
+            
+            .products-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-number {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .roadmap {
+                padding-left: 40px;
+            }
+            
+            .roadmap-item::before {
+                left: -40px;
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+<body x-data="{ mobileMenuOpen: false, lastScrollTop: 0 }" @scroll.window="
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if(st > lastScrollTop && st > 100) {
+        document.querySelector('.nav-menu').classList.add('hidden');
+    } else {
+        document.querySelector('.nav-menu').classList.remove('hidden');
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+    
+    document.querySelector('.scroll-top').classList.toggle('show', st > 300);
+    
+    document.querySelectorAll('.section').forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if(rect.top <= 100 && rect.bottom >= 100) {
+            document.querySelectorAll('.side-dot').forEach(dot => dot.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.side-dot:nth-child(${index + 1})`).classList.add('active');
+            document.querySelector(`.nav-link:nth-child(${index + 1})`).classList.add('active');
+        }
+    });
+    
+    document.querySelectorAll('.animate').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        if(rect.top <= windowHeight * 0.75) {
+            element.classList.add('active');
+        }
+    });
+">
+
+    <!-- Навигационное меню -->
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <a href="#section1" class="nav-logo">ОливкИстрия</a>
+            <button class="mobile-menu-btn" @click="mobileMenuOpen = !mobileMenuOpen">
+                <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+            </button>
+            <div class="nav-links" :class="{'show': mobileMenuOpen}">
+                <a href="#section1" class="nav-link active" @click="mobileMenuOpen = false">Главная</a>
+                <a href="#section2" class="nav-link" @click="mobileMenuOpen = false">Резюме</a>
+                <a href="#section3" class="nav-link" @click="mobileMenuOpen = false">Рынок</a>
+                <a href="#section4" class="nav-link" @click="mobileMenuOpen = false">Производство</a>
+                <a href="#section5" class="nav-link" @click="mobileMenuOpen = false">Эко-туризм</a>
+                <a href="#section6" class="nav-link" @click="mobileMenuOpen = false">Финансы</a>
+                <a href="#section7" class="nav-link" @click="mobileMenuOpen = false">Маркетинг</a>
+                <a href="#section8" class="nav-link" @click="mobileMenuOpen = false">Риски</a>
+                <a href="#section9" class="nav-link" @click="mobileMenuOpen = false">Дорожная карта</a>
+                <a href="#section10" class="nav-link" @click="mobileMenuOpen = false">Контакты</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Боковая навигация -->
+    <div class="side-dots">
+        <a href="#section1" class="side-dot active"></a>
+        <a href="#section2" class="side-dot"></a>
+        <a href="#section3" class="side-dot"></a>
+        <a href="#section4" class="side-dot"></a>
+        <a href="#section5" class="side-dot"></a>
+        <a href="#section6" class="side-dot"></a>
+        <a href="#section7" class="side-dot"></a>
+        <a href="#section8" class="side-dot"></a>
+        <a href="#section9" class="side-dot"></a>
+        <a href="#section10" class="side-dot"></a>
     </div>
     
-    <div class="page-nav">
-        <div class="nav-dot active" data-slide="1"></div>
-        <div class="nav-dot" data-slide="2"></div>
-        <div class="nav-dot" data-slide="3"></div>
-        <div class="nav-dot" data-slide="4"></div>
-        <div class="nav-dot" data-slide="5"></div>
-        <div class="nav-dot" data-slide="6"></div>
-        <div class="nav-dot" data-slide="7"></div>
-        <div class="nav-dot" data-slide="8"></div>
-        <div class="nav-dot" data-slide="9"></div>
-        <div class="nav-dot" data-slide="10"></div>
-    </div>
+    <!-- Кнопка прокрутки вверх -->
+    <a href="#section1" class="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
 
-    <!-- Слайд 1: Титульный -->
-    <section class="section" id="slide1">
-        <div class="slide-number">1</div>
+    <!-- Секция 1: Титульная -->
+    <section class="section" id="section1">
+        <div class="section-number">1</div>
         <div class="container">
-            <h1 class="animate-fadeInDown">Оливковый сад и эко-туризм</h1>
-            <h2 class="animate-fadeInUp">Випавская долина, Словения</h2>
+            <h1 class="animate">Оливковый сад и эко-туризм</h1>
+            <h2 class="animate delay-100">Випавская долина, Словения</h2>
             
-            <div class="image-container animate-fadeIn" style="animation-delay: 0.5s;">
+            <div class="img-container animate delay-200">
                 <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина">
             </div>
             
-            <p class="animate-fadeInUp" style="animation-delay: 0.7s;">Инвестиционный проект премиального оливкового сада и эко-туризма</p>
+            <p class="animate delay-300">Инвестиционный проект премиального оливкового сада и эко-туризма</p>
             
-            <div class="stat-container">
-                <div class="stat-item animate-fadeInUp" style="animation-delay: 0.9s;">
+            <div class="stats-container">
+                <div class="stat-item animate delay-400">
                     <div class="stat-number">10</div>
                     <div class="stat-text">лет горизонт планирования</div>
                 </div>
-                <div class="stat-item animate-fadeInUp" style="animation-delay: 1.1s;">
+                <div class="stat-item animate delay-500">
                     <div class="stat-number">4,4</div>
                     <div class="stat-text">га общая площадь</div>
                 </div>
-                <div class="stat-item animate-fadeInUp" style="animation-delay: 1.3s;">
+                <div class="stat-item animate delay-500">
                     <div class="stat-number">36%</div>
                     <div class="stat-text">IRR проекта</div>
                 </div>
@@ -596,81 +812,85 @@
         </div>
     </section>
     
-    <!-- Слайд 2: Исполнительное резюме -->
-    <section class="section" id="slide2">
-        <div class="slide-number">2</div>
+    <!-- Секция 2: Исполнительное резюме -->
+    <section class="section" id="section2">
+        <div class="section-number">2</div>
         <div class="container">
-            <h2 class="reveal">Исполнительное резюме</h2>
+            <h2 class="animate">Исполнительное резюме</h2>
             
             <div class="columns">
                 <div class="column">
-                    <div class="card reveal delay-1">
+                    <div class="card card-accent animate">
                         <h3>Локация</h3>
                         <p>Посёлки Коболи и Вечкоти, Айдовшчина (Випавская долина)</p>
                     </div>
                     
-                    <div class="card reveal delay-2">
+                    <div class="card card-accent animate delay-100">
                         <h3>Площадь</h3>
                         <p>4,404 га (44 041 м²) — изначально 3,04 га виноградник + 1,36 га пашня</p>
                     </div>
                     
-                    <div class="card reveal delay-3">
+                    <div class="card card-accent animate delay-200">
                         <h3>Концепция</h3>
                         <p>Производство премиального extra-virgin оливкового масла (EVOO) + опытный агротуризм с участием гостей в сборе урожая</p>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="image-container reveal delay-1">
+                    <div class="img-container animate delay-300">
                         <img src="https://www.vitamia.si/images/com_osgallery/gal-6/original/vipava-02DC0E415E-CFA4-87F9-4A15-498E5AFA3089.jpg" alt="Випавская долина">
                     </div>
                 </div>
             </div>
             
-            <h3 class="reveal">Ключевые аспекты проекта:</h3>
-            <ul class="reveal delay-1">
-                <li>Полное преобразование участка в интенсивный оливковый сад с орошением в два этапа (2,2 га + 2,2 га)</li>
-                <li>Посадка автохтонных сортов Istrska belica (70%) и Buga (30%) — стойких к морозу и ценных низкой кислотностью масла</li>
-                <li>Использование онлайн-каналов и туристических связей: «Оливковый уик-энд» — гости собирают урожай, снижают затраты на рабочую силу</li>
-                <li>Сочетание прямых CAP-платежей (≈ 320 €/га) и инвестиционной субсидии CSP Мера 4.1 — 40% расходов на закладку сада и орошение</li>
-                <li>Точка безубыточности — 3-й год, накопленный денежный поток > 110 тыс. € к 5-му году; NPV (дисконт 8%) ≈ 424 тыс. €</li>
-            </ul>
+            <div class="card card-primary animate delay-400">
+                <h3>Ключевые аспекты проекта:</h3>
+                <ul>
+                    <li>Полное преобразование участка в интенсивный оливковый сад с орошением в два этапа (2,2 га + 2,2 га)</li>
+                    <li>Посадка автохтонных сортов Istrska belica (70%) и Buga (30%) — стойких к морозу и ценных низкой кислотностью масла</li>
+                    <li>Использование онлайн-каналов и туристических связей: «Оливковый уик-энд» — гости собирают урожай, снижают затраты на рабочую силу</li>
+                    <li>Сочетание прямых CAP-платежей (≈ 320 €/га) и инвестиционной субсидии CSP Мера 4.1 — 40% расходов на закладку сада и орошение</li>
+                    <li>Точка безубыточности — 3-й год, накопленный денежный поток > 110 тыс. € к 5-му году; NPV (дисконт 8%) ≈ 424 тыс. €</li>
+                </ul>
+            </div>
         </div>
     </section>
     
-    <!-- Слайд 3: Анализ собственности и рынка -->
-    <section class="section" id="slide3">
-        <div class="slide-number">3</div>
+    <!-- Секция 3: Анализ рынка -->
+    <section class="section" id="section3">
+        <div class="section-number">3</div>
         <div class="container">
-            <h2 class="reveal">Анализ собственности и рынка</h2>
+            <h2 class="animate">Анализ собственности и рынка</h2>
             
             <div class="columns">
                 <div class="column">
-                    <h3 class="reveal">Макро-факторы</h3>
+                    <h3 class="animate">Макро-факторы</h3>
                     
-                    <div class="card reveal delay-1">
-                        <h4>Климат</h4>
-                        <p>Випавская долина — самая тёплая зона запада Словении (ср. 14°C; 1 800 ч солнца)</p>
-                    </div>
-                    
-                    <div class="card reveal delay-2">
-                        <h4>Рынок оливкового масла</h4>
-                        <p>Внутреннее производство покрывает лишь ~25% спроса на EVOO в стране</p>
-                    </div>
-                    
-                    <div class="card reveal delay-3">
-                        <h4>Туристический поток</h4>
-                        <p>Турпоток растёт (+14% 2023-24 гг.); до Любляны — 1 ч, Триеста — 45 мин, аэропорта Венеции — 2 ч</p>
+                    <div class="cards-container">
+                        <div class="card animate delay-100">
+                            <h4>Климат</h4>
+                            <p>Випавская долина — самая тёплая зона запада Словении (ср. 14°C; 1 800 ч солнца)</p>
+                        </div>
+                        
+                        <div class="card animate delay-200">
+                            <h4>Рынок оливкового масла</h4>
+                            <p>Внутреннее производство покрывает лишь ~25% спроса на EVOO в стране</p>
+                        </div>
+                        
+                        <div class="card animate delay-300">
+                            <h4>Туристический поток</h4>
+                            <p>Турпоток растёт (+14% 2023-24 гг.); до Любляны — 1 ч, Триеста — 45 мин, аэропорта Венеции — 2 ч</p>
+                        </div>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="chart-container reveal delay-1">
+                    <div class="chart-container animate delay-400">
                         <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/revenue_structure_chart.png" alt="Структура доходов">
                     </div>
                 </div>
             </div>
             
-            <h3 class="reveal">Конкуренты</h3>
-            <div class="table-container reveal delay-1">
+            <h3 class="animate">Конкуренты</h3>
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -697,7 +917,7 @@
                             <td>Награды, люкс-упаковка</td>
                         </tr>
                         <tr>
-                            <td>Наш проект</td>
+                            <td><strong>Наш проект</strong></td>
                             <td>—</td>
                             <td>4,4 га</td>
                             <td>26</td>
@@ -707,8 +927,8 @@
                 </table>
             </div>
             
-            <h3 class="reveal">Рыночные тренды</h3>
-            <ul class="reveal delay-1">
+            <h3 class="animate">Рыночные тренды</h3>
+            <ul class="animate delay-100">
                 <li>Растущий спрос на органические продукты и эко-туризм</li>
                 <li>Увеличение интереса к аутентичным гастрономическим впечатлениям</li>
                 <li>Растущий сегмент премиальных оливковых масел с защищенным происхождением</li>
@@ -717,14 +937,14 @@
         </div>
     </section>
     
-    <!-- Слайд 4: Производственный план -->
-    <section class="section" id="slide4">
-        <div class="slide-number">4</div>
+    <!-- Секция 4: Производственный план -->
+    <section class="section" id="section4">
+        <div class="section-number">4</div>
         <div class="container">
-            <h2 class="reveal">Производственный план</h2>
+            <h2 class="animate">Производственный план</h2>
             
-            <h3 class="reveal">График посадок</h3>
-            <div class="table-container reveal delay-1">
+            <h3 class="animate">График посадок</h3>
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -757,7 +977,7 @@
                 </table>
             </div>
             
-            <div class="card reveal delay-2">
+            <div class="card animate delay-200">
                 <h4>Ключевые особенности:</h4>
                 <ul>
                     <li>Схема: 5 × 4 м (≈ 500 дер./га) — компромисс ручной и механической уборки</li>
@@ -766,13 +986,13 @@
                 </ul>
             </div>
             
-            <div class="chart-container reveal delay-3">
+            <div class="chart-container animate delay-300">
                 <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/olive_varieties_distribution_chart.png" alt="Распределение сортов оливок">
             </div>
             
             <div class="columns">
                 <div class="column">
-                    <div class="card reveal delay-1">
+                    <div class="card animate delay-400">
                         <h3>Istrska belica (70%)</h3>
                         <p><em>Автохтонный</em></p>
                         <p>Самый распространенный сорт в Словенской Истрии. Известен очень интенсивной и пряной нотой. Масло очень фруктовое, пахнет свежескошенной травой, зелеными яблоками, оливковыми плодами, миндалем.</p>
@@ -780,7 +1000,7 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="card reveal delay-2">
+                    <div class="card animate delay-500">
                         <h3>Buga (30%)</h3>
                         <p><em>Автохтонный</em></p>
                         <p>Сорт из Словенской Истрии. Дерево умеренного размера с пышной кроной. Содержание масла в плодах относительно невысокое.</p>
@@ -789,8 +1009,8 @@
                 </div>
             </div>
             
-            <h3 class="reveal">Кривая урожайности</h3>
-            <div class="table-container reveal delay-1">
+            <h3 class="animate">Кривая урожайности</h3>
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -840,41 +1060,41 @@
                     </tbody>
                 </table>
             </div>
-            <p class="reveal delay-2"><small>Полная урожайность: 0,45 т масла/га × 4,4 га; цена 12 €/кг при прямых продажах.</small></p>
+            <p class="animate delay-200"><small>Полная урожайность: 0,45 т масла/га × 4,4 га; цена 12 €/кг при прямых продажах.</small></p>
             
-            <div class="chart-container reveal delay-3">
+            <div class="chart-container animate delay-300">
                 <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/olive_oil_yield_chart.png" alt="График урожайности оливок">
             </div>
         </div>
     </section>
     
-    <!-- Слайд 5: Эко-туризм -->
-    <section class="section" id="slide5">
-        <div class="slide-number">5</div>
+    <!-- Секция 5: Эко-туризм -->
+    <section class="section" id="section5">
+        <div class="section-number">5</div>
         <div class="container">
-            <h2 class="reveal">Эко-туризм</h2>
+            <h2 class="animate">Эко-туризм</h2>
             
             <div class="columns">
                 <div class="column">
-                    <h3 class="reveal">Инфраструктура</h3>
-                    <div class="features">
-                        <div class="feature reveal delay-1">
+                    <h3 class="animate">Инфраструктура</h3>
+                    <div class="cards-container">
+                        <div class="card animate delay-100">
                             <div class="feature-title">Модульный домик-приёмная 35 м²</div>
                             <p>Дегустационный зал, санузел</p>
                         </div>
-                        <div class="feature reveal delay-2">
+                        <div class="card animate delay-200">
                             <div class="feature-title">CAPEX 25 000 €</div>
                             <p>Не требует строительного разрешения при закрытой площади < 30 м² + терраса 15 м²</p>
                         </div>
-                        <div class="feature reveal delay-3">
+                        <div class="card animate delay-300">
                             <div class="feature-title">8 парковочных мест</div>
                             <p>Щебень + солнечная пергола с зарядкой EV (грант Эко-Фонда)</p>
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <h3 class="reveal">Продукты и цены</h3>
-                    <div class="table-container reveal delay-1">
+                    <h3 class="animate">Продукты и цены</h3>
+                    <div class="table-container animate delay-100">
                         <table>
                             <thead>
                                 <tr>
@@ -906,58 +1126,54 @@
                             </tbody>
                         </table>
                     </div>
-                    <p class="reveal delay-2">Туристы-сборщики заменяют проф. бригаду (экономия ~950 €/га).</p>
+                    <p class="animate delay-200">Туристы-сборщики заменяют проф. бригаду (экономия ~950 €/га).</p>
                 </div>
             </div>
             
-            <h3 class="reveal">Уникальный опыт для туристов</h3>
+            <h3 class="animate">Уникальный опыт для туристов</h3>
             <div class="columns">
                 <div class="column">
-                    <div class="card reveal delay-1">
-                        <div class="image-container" style="margin-bottom: 1rem;">
-                            <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок">
-                        </div>
-                        <h4>Традиции сбора оливок</h4>
-                        <p>Погружение в многовековые традиции сбора оливок с местными экспертами.</p>
+                    <div class="img-container animate delay-100">
+                        <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок">
                     </div>
+                    <h4 class="text-center animate delay-200">Традиции сбора оливок</h4>
+                    <p class="text-center animate delay-300">Погружение в многовековые традиции сбора оливок с местными экспертами.</p>
                 </div>
                 <div class="column">
-                    <div class="card reveal delay-2">
-                        <div class="image-container" style="margin-bottom: 1rem;">
-                            <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olives-harvesting.jpg" alt="Дегустация оливкового масла">
-                        </div>
-                        <h4>Дегустация премиального масла</h4>
-                        <p>Мастер-классы по дегустации различных сортов оливкового масла.</p>
+                    <div class="img-container animate delay-100">
+                        <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olives-harvesting.jpg" alt="Дегустация оливкового масла">
                     </div>
+                    <h4 class="text-center animate delay-200">Дегустация премиального масла</h4>
+                    <p class="text-center animate delay-300">Мастер-классы по дегустации различных сортов оливкового масла.</p>
                 </div>
             </div>
             
-            <h3 class="reveal">Преимущества агротуризма</h3>
-            <div class="features">
-                <div class="feature reveal delay-1">
-                    <div class="feature-title">Снижение затрат</div>
+            <h3 class="animate">Преимущества агротуризма</h3>
+            <div class="cards-container">
+                <div class="card animate delay-100">
+                    <h4>Снижение затрат</h4>
                     <p>Замена наемной рабочей силы туристами, принимающими участие в сборе урожая</p>
                 </div>
-                <div class="feature reveal delay-2">
-                    <div class="feature-title">Продвижение бренда</div>
+                <div class="card animate delay-200">
+                    <h4>Продвижение бренда</h4>
                     <p>Создание армии амбассадоров бренда через личный опыт и эмоциональную связь</p>
                 </div>
-                <div class="feature reveal delay-3">
-                    <div class="feature-title">Дополнительный доход</div>
+                <div class="card animate delay-300">
+                    <h4>Дополнительный доход</h4>
                     <p>Создание стабильного потока доходов в период межсезонья и до начала плодоношения</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Слайд 6: Финансовый план -->
-    <section class="section" id="slide6">
-        <div class="slide-number">6</div>
+    <!-- Секция 6: Финансовый план -->
+    <section class="section" id="section6">
+        <div class="section-number">6</div>
         <div class="container">
-            <h2 class="reveal">Финансовый план</h2>
+            <h2 class="animate">Финансовый план</h2>
             
-            <h3 class="reveal">CAPEX и гранты</h3>
-            <div class="table-container reveal delay-1">
+            <h3 class="animate">CAPEX и гранты</h3>
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -987,7 +1203,7 @@
                             <td>25 000 €</td>
                         </tr>
                         <tr>
-                            <td>Итого</td>
+                            <td><strong>Итого</strong></td>
                             <td>104 934 €</td>
                             <td>31 974 €</td>
                             <td>72 960 €</td>
@@ -998,31 +1214,31 @@
             
             <div class="columns">
                 <div class="column">
-                    <h3 class="reveal">Годовые OPEX</h3>
-                    <div class="features">
-                        <div class="feature reveal delay-1">
-                            <div class="feature-title">Уход сада, СЗР, удобрения</div>
+                    <h3 class="animate">Годовые OPEX</h3>
+                    <div class="cards-container">
+                        <div class="card animate delay-100">
+                            <h4>Уход сада, СЗР, удобрения</h4>
                             <p>1 250 €/га</p>
                         </div>
-                        <div class="feature reveal delay-2">
-                            <div class="feature-title">Логистика/аренда техники</div>
+                        <div class="card animate delay-200">
+                            <h4>Логистика/аренда техники</h4>
                             <p>300 €/га</p>
                         </div>
-                        <div class="feature reveal delay-3">
-                            <div class="feature-title">Расходы на гостей</div>
+                        <div class="card animate delay-300">
+                            <h4>Расходы на гостей</h4>
                             <p>35% тур-выручки</p>
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="chart-container reveal delay-2">
+                    <div class="chart-container animate delay-400">
                         <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/investment_structure_pie_chart.png" alt="Структура инвестиций">
                     </div>
                 </div>
             </div>
             
-            <h3 class="reveal">Десятилетний денежный поток</h3>
-            <div class="table-container reveal delay-1">
+            <h3 class="animate">Десятилетний денежный поток</h3>
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -1115,58 +1331,55 @@
                 </table>
             </div>
             
-            <div class="stat-container">
-                <div class="stat-item reveal delay-1">
-                    <div class="stat-number">424 тыс. €</div>
-                    <div class="stat-text">NPV (при ставке дисконтирования 8%)</div>
-                </div>
-                <div class="stat-item reveal delay-2">
-                    <div class="stat-number">36%</div>
-                    <div class="stat-text">IRR проекта</div>
-                </div>
-                <div class="stat-item reveal delay-3">
-                    <div class="stat-number">3 года</div>
-                    <div class="stat-text">Срок окупаемости</div>
+            <div class="stats-container">
+                <div class="stat-item animate delay-200">
+                    <div class="stat-number">424</div>
+                    <div class="stat-text">тыс. € NPV (при ставке дисконтирования 8%)</div>
                 </div>
             </div>
             
-            <div class="chart-container reveal delay-3">
-                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/revenue_and_expenses_chart.png" alt="Доходы и расходы по годам">
-            </div>
-            
-            <div class="chart-container reveal delay-4">
-                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/cumulative_cash_flow_chart.png" alt="Накопленный денежный поток">
+            <div class="columns">
+                <div class="column">
+                    <div class="chart-container animate delay-300">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/revenue_and_expenses_chart.png" alt="Доходы и расходы по годам">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="chart-container animate delay-400">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01XieFEogVdcWXth2dNT5hbj/python_result_images/cumulative_cash_flow_chart.png" alt="Накопленный денежный поток">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Слайд 7: Маркетинг и продажи -->
-    <section class="section" id="slide7">
-        <div class="slide-number">7</div>
+    <!-- Секция 7: Маркетинг и продажи -->
+    <section class="section" id="section7">
+        <div class="section-number">7</div>
         <div class="container">
-            <h2 class="reveal">Маркетинг и продажи</h2>
+            <h2 class="animate">Маркетинг и продажи</h2>
             
             <div class="columns">
                 <div class="column">
-                    <h3 class="reveal">Брендинг</h3>
-                    <div class="features">
-                        <div class="feature reveal delay-1">
-                            <div class="feature-title">Домены</div>
+                    <h3 class="animate">Брендинг</h3>
+                    <div class="cards-container">
+                        <div class="card animate delay-100">
+                            <h4>Домены</h4>
                             <p>Регистрируем домены .com + .si + .eu</p>
                         </div>
-                        <div class="feature reveal delay-2">
-                            <div class="feature-title">Легенда бренда</div>
+                        <div class="card animate delay-200">
+                            <h4>Легенда бренда</h4>
                             <p>«Самые северные оливки Средиземноморья»</p>
                         </div>
-                        <div class="feature reveal delay-3">
-                            <div class="feature-title">Визуальная идентичность</div>
+                        <div class="card animate delay-300">
+                            <h4>Визуальная идентичность</h4>
                             <p>Чистый, экологичный дизайн с акцентом на премиальность и аутентичность</p>
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <h3 class="reveal">Каналы продвижения</h3>
-                    <ul class="reveal delay-1">
+                    <h3 class="animate">Каналы продвижения</h3>
+                    <ul class="animate delay-100">
                         <li>Instagram/TikTok (рили harvest)</li>
                         <li>Meta-реклама туров</li>
                         <li>OTA (GetYourGuide, Viator)</li>
@@ -1174,8 +1387,8 @@
                         <li>Word-of-mouth и рекомендации</li>
                     </ul>
                     
-                    <h3 class="reveal delay-2">Партнёрства</h3>
-                    <ul class="reveal delay-3">
+                    <h3 class="animate delay-200">Партнёрства</h3>
+                    <ul class="animate delay-300">
                         <li>Винодельни Випавы</li>
                         <li>Местные отели и рестораны</li>
                         <li>Гастрономические туры</li>
@@ -1185,55 +1398,55 @@
                 </div>
             </div>
             
-            <h3 class="reveal">Продукты</h3>
-            <div class="products">
-                <div class="product reveal delay-1">
+            <h3 class="animate">Продукты</h3>
+            <div class="products-gallery">
+                <div class="product-item animate delay-100">
                     <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Премиальное EVOO">
                     <div class="product-title">Премиальное EVOO</div>
                 </div>
-                <div class="product reveal delay-2">
+                <div class="product-item animate delay-200">
                     <img src="https://madeinspain.store/wp-content/uploads/2023/10/aove-oro-la-senda-seleccion-etiqueta-blanca-aove-premium.jpeg" alt="Подарочные наборы">
                     <div class="product-title">Подарочные наборы</div>
                 </div>
-                <div class="product reveal delay-3">
+                <div class="product-item animate delay-300">
                     <img src="https://critida.com/wp-content/uploads/2024/01/ORGANIC-500ML-scaled.jpg" alt="Органическая линейка">
                     <div class="product-title">Органическая линейка</div>
                 </div>
-                <div class="product reveal delay-4">
+                <div class="product-item animate delay-400">
                     <img src="https://morganic.ru/image/catalog/Pons/004/olivkovoe-maslo-pons-oleum-primum-evoo-premium-v-korobke-ispaniya-1-5-l.jpg" alt="Лимитированные выпуски">
                     <div class="product-title">Лимитированные выпуски</div>
                 </div>
             </div>
             
-            <h3 class="reveal">Стратегия ценообразования</h3>
-            <div class="features">
-                <div class="feature reveal delay-1">
-                    <div class="feature-title">Премиальное позиционирование</div>
+            <h3 class="animate">Стратегия ценообразования</h3>
+            <div class="cards-container">
+                <div class="card animate delay-100">
+                    <h4>Премиальное позиционирование</h4>
                     <p>Установка цен выше среднего рынка для подчеркивания эксклюзивности и высокого качества продукта</p>
                 </div>
-                <div class="feature reveal delay-2">
-                    <div class="feature-title">Прямые продажи</div>
+                <div class="card animate delay-200">
+                    <h4>Прямые продажи</h4>
                     <p>Приоритет прямых продаж конечным потребителям для максимизации маржинальности</p>
                 </div>
-                <div class="feature reveal delay-3">
-                    <div class="feature-title">Пакетные предложения</div>
+                <div class="card animate delay-300">
+                    <h4>Пакетные предложения</h4>
                     <p>Создание комплексных туристических предложений, объединяющих активности и продукты</p>
                 </div>
-                <div class="feature reveal delay-4">
-                    <div class="feature-title">Сезонность и лимитированность</div>
+                <div class="card animate delay-400">
+                    <h4>Сезонность и лимитированность</h4>
                     <p>Использование сезонных предложений и ограниченных выпусков для создания эксклюзивности</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Слайд 8: Риски и меры -->
-    <section class="section" id="slide8">
-        <div class="slide-number">8</div>
+    <!-- Секция 8: Риски и меры -->
+    <section class="section" id="section8">
+        <div class="section-number">8</div>
         <div class="container">
-            <h2 class="reveal">Риски и меры</h2>
+            <h2 class="animate">Риски и меры</h2>
             
-            <div class="table-container reveal delay-1">
+            <div class="table-container animate delay-100">
                 <table>
                     <thead>
                         <tr>
@@ -1264,212 +1477,231 @@
             
             <div class="columns">
                 <div class="column">
-                    <h3 class="reveal">Управление климатическими рисками</h3>
-                    <div class="card reveal delay-1">
+                    <h3 class="animate">Управление климатическими рисками</h3>
+                    
+                    <div class="card animate delay-100">
                         <h4>Защита от заморозков</h4>
                         <p>Сорт Istrska belica способен выдерживать температуры до -10°C, что делает его идеальным для климата Випавской долины. Дополнительно будут применяться защитные обертывания молодых деревьев в холодные периоды.</p>
                     </div>
                     
-                    <div class="card reveal delay-2">
+                    <div class="card animate delay-200">
                         <h4>Борьба с засухой</h4>
                         <p>Внедрение высокоэффективной системы капельного орошения, работающей на солнечной энергии. Дополнительно используются методы мульчирования для сохранения влаги и регулярный мониторинг влажности почвы.</p>
                     </div>
                 </div>
                 <div class="column">
-                    <h3 class="reveal">Минимизация рыночных рисков</h3>
-                    <div class="card reveal delay-1">
+                    <h3 class="animate">Минимизация рыночных рисков</h3>
+                    
+                    <div class="card animate delay-300">
                         <h4>Колебания цен на оливковое масло</h4>
                         <p>Фокус на премиальном сегменте и прямых продажах, где ценовые колебания меньше влияют на маржинальность. Диверсификация доходов через туристические предложения, которые менее подвержены ценовым рискам.</p>
                     </div>
                     
-                    <div class="card reveal delay-2">
+                    <div class="card animate delay-400">
                         <h4>Нехватка рабочей силы</h4>
                         <p>Инновационная модель «Оливковый уик-энд», где туристы участвуют в сборе урожая, решая проблему нехватки работников и создавая дополнительный источник дохода одновременно.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="chart-container reveal delay-3">
+            <div class="chart-container animate delay-500">
                 <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/generate_and_execute_python_tool_call/toolu_01JWhyg24DGcvnveNe3AHRHU/python_result_images/npv_and_irr_visualization.png" alt="NPV и IRR проекта">
             </div>
         </div>
     </section>
     
-    <!-- Слайд 9: Дорожная карта -->
-    <section class="section" id="slide9">
-        <div class="slide-number">9</div>
+    <!-- Секция 9: Дорожная карта -->
+    <section class="section" id="section9">
+        <div class="section-number">9</div>
         <div class="container">
-            <h2 class="reveal">Дорожная карта</h2>
+            <h2 class="animate">Дорожная карта</h2>
             
             <div class="roadmap">
-                <div class="roadmap-item" style="--order: 1;">
+                <div class="roadmap-item animate delay-100">
                     <h3>III кв. 2025</h3>
                     <p>Очистка и посадка 1-го этапа; заказ домика</p>
                 </div>
-                <div class="roadmap-item" style="--order: 2;">
+                
+                <div class="roadmap-item animate delay-200">
                     <h3>II кв. 2026</h3>
                     <p>Посадка 2-го этапа; домик открыт; онлайн-бронирование</p>
                 </div>
-                <div class="roadmap-item" style="--order: 3;">
+                
+                <div class="roadmap-item animate delay-300">
                     <h3>Осень 2027</h3>
                     <p>Первый harvest-weekend с блогерами (200 гостей)</p>
                 </div>
-                <div class="roadmap-item" style="--order: 4;">
+                
+                <div class="roadmap-item animate delay-400">
                     <h3>2028</h3>
                     <p>Начало био-конверсии; 0,4 т масла</p>
                 </div>
-                <div class="roadmap-item" style="--order: 5;">
+                
+                <div class="roadmap-item animate delay-500">
                     <h3>2032</h3>
                     <p>Полный урожай — 2 т масла; > 1 000 гостей; план расширения</p>
                 </div>
             </div>
             
-            <h3 class="reveal">Следующие шаги</h3>
-            <div class="steps">
-                <div class="step reveal delay-1">
+            <h3 class="animate">Следующие шаги</h3>
+            <div class="steps-grid">
+                <div class="step-item animate delay-100">
                     <div class="step-number">1</div>
                     <h4>Финальный агрохим- и гидроанализ</h4>
-                    <p class="step-date">Июнь 2025</p>
+                    <p>Июнь 2025</p>
                 </div>
-                <div class="step reveal delay-2">
+                
+                <div class="step-item animate delay-200">
                     <div class="step-number">2</div>
                     <h4>Заявка CSP 4.1</h4>
-                    <p class="step-date">Сентябрь 2025</p>
+                    <p>Сентябрь 2025</p>
                 </div>
-                <div class="step reveal delay-3">
+                
+                <div class="step-item animate delay-300">
                     <div class="step-number">3</div>
                     <h4>Грант Эко-фонда на солнечный насос</h4>
-                    <p class="step-date">Январь 2026</p>
+                    <p>Январь 2026</p>
                 </div>
-                <div class="step reveal delay-4">
+                
+                <div class="step-item animate delay-400">
                     <div class="step-number">4</div>
                     <h4>Контракт с питомником на 2 000 саженцев</h4>
-                    <p class="step-date">Июль 2025</p>
+                    <p>Июль 2025</p>
                 </div>
-                <div class="step reveal delay-5">
+                
+                <div class="step-item animate delay-500">
                     <div class="step-number">5</div>
                     <h4>Предпродажа турпакетов на сбор урожая</h4>
-                    <p class="step-date">Март 2026</p>
+                    <p>Март 2026</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Слайд 10: Фотогалерея и контакты -->
-    <section class="section" id="slide10">
-        <div class="slide-number">10</div>
+    <!-- Секция 10: Фотогалерея и контакты -->
+    <section class="section" id="section10">
+        <div class="section-number">10</div>
         <div class="container">
-            <h2 class="reveal">Фотогалерея</h2>
+            <h2 class="animate">Фотогалерея</h2>
             
-            <div class="columns">
-                <div class="column">
-                    <div class="image-container reveal delay-1">
-                        <img src="https://www.vitamia.si/images/com_osgallery/gal-6/original/vipava-02DC0E415E-CFA4-87F9-4A15-498E5AFA3089.jpg" alt="Випавская долина">
-                    </div>
-                    <div class="image-container reveal delay-3">
-                        <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок">
-                    </div>
+            <div class="products-gallery">
+                <div class="product-item animate delay-100">
+                    <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина">
                 </div>
-                <div class="column">
-                    <div class="image-container reveal delay-2">
-                        <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olive-picking-time.jpg" alt="Оливковый сад">
-                    </div>
-                    <div class="image-container reveal delay-4">
-                        <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина панорама">
-                    </div>
+                <div class="product-item animate delay-200">
+                    <img src="https://www.rental-center-crete.com/blog/wp-content/uploads/2020/09/olive-picking-time.jpg" alt="Сбор оливок">
+                </div>
+                <div class="product-item animate delay-300">
+                    <img src="https://madeinspain.store/wp-content/uploads/2023/03/Excellence-Sikitita-2.jpg" alt="Оливковое масло">
+                </div>
+                <div class="product-item animate delay-400">
+                    <img src="https://img-fotki.yandex.ru/get/3207/192727274.24/0_fed29_4fc964c8_orig.jpg" alt="Сбор оливок туристами">
                 </div>
             </div>
             
-            <h3 class="reveal">Основные финансовые показатели</h3>
-            <div class="stat-container">
-                <div class="stat-item reveal delay-1">
-                    <div class="stat-number">424 тыс. €</div>
-                    <div class="stat-text">NPV (8% дисконт)</div>
+            <h3 class="animate">Основные финансовые показатели</h3>
+            <div class="stats-container">
+                <div class="stat-item animate delay-100">
+                    <div class="stat-number">424</div>
+                    <div class="stat-text">тыс. € NPV (8% дисконт)</div>
                 </div>
-                <div class="stat-item reveal delay-2">
-                    <div class="stat-number">36%</div>
-                    <div class="stat-text">IRR проекта</div>
+                <div class="stat-item animate delay-200">
+                    <div class="stat-number">3</div>
+                    <div class="stat-text">года точка безубыточности</div>
                 </div>
-                <div class="stat-item reveal delay-3">
-                    <div class="stat-number">3 года</div>
-                    <div class="stat-text">Точка безубыточности</div>
-                </div>
-                <div class="stat-item reveal delay-4">
-                    <div class="stat-number">733 тыс. €</div>
-                    <div class="stat-text">Накопленный денежный поток за 10 лет</div>
+                <div class="stat-item animate delay-300">
+                    <div class="stat-number">733</div>
+                    <div class="stat-text">тыс. € накопленный денежный поток за 10 лет</div>
                 </div>
             </div>
             
-            <div class="card reveal delay-5" style="text-align: center; margin-top: 3rem;">
-                <h3>Контактная информация</h3>
-                <p><strong>Email:</strong> info@olivegrove-slovenia.com</p>
-                <p><strong>Телефон:</strong> +386 XX XXX XXX</p>
-                <p><strong>Адрес:</strong> Посёлки Коболи и Вечкоти, Айдовшчина, Словения</p>
-            </div>
         </div>
     </section>
-    
-    <script>
-        // Анимация при скролле
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Инициализация инструментов анимации
+        gsap.registerPlugin(ScrollTrigger);
         
-        // Навигационные точки
-        const navDots = document.querySelectorAll('.nav-dot');
-        navDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideNum = dot.getAttribute('data-slide');
-                const targetSlide = document.getElementById(`slide${slideNum}`);
-                targetSlide.scrollIntoView({ behavior: 'smooth' });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления элементов при скролле
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate').forEach(element => {
+                observer.observe(element);
             });
-        });
-        
-        // Отслеживание активного слайда при скролле
-        function updateActiveDot() {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= 150 && rect.bottom >= 150) {
-                    const slideNum = index + 1;
-                    navDots.forEach(dot => {
-                        dot.classList.remove('active');
+            
+            // Плавная прокрутка для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрыть мобильное меню при клике на ссылку
+                        if (window.innerWidth <= 768) {
+                            document.querySelector('.nav-links').classList.remove('show');
+                            document.querySelector('[x-data]').__x.$data.mobileMenuOpen = false;
+                        }
+                    }
+                });
+            });
+            
+            // Активация кнопки скролла вверх
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                document.querySelector('.scroll-top').classList.toggle('show', scrollTop > 300);
+            });
+            
+            // Анимация счетчиков
+            const countElements = document.querySelectorAll('.stat-number');
+            
+            countElements.forEach(element => {
+                const targetValue = parseInt(element.innerText);
+                element.innerText = '0';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            let startValue = 0;
+                            const duration = 2000; // 2 секунды
+                            const increment = targetValue / (duration / 20);
+                            const timer = setInterval(() => {
+                                startValue += increment;
+                                if (startValue >= targetValue) {
+                                    element.innerText = targetValue;
+                                    clearInterval(timer);
+                                } else {
+                                    element.innerText = Math.floor(startValue);
+                                }
+                            }, 20);
+                            
+                            observer.unobserve(entry.target);
+                        }
                     });
-                    document.querySelector(`.nav-dot[data-slide="${slideNum}"]`).classList.add('active');
-                }
+                }, { threshold: 0.5 });
+                
+                observer.observe(element);
             });
-        }
-        
-        // Кнопка "Вверх"
-        const backToTopBtn = document.getElementById('backToTop');
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        function toggleBackToTopBtn() {
-            if (window.scrollY > 500) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        }
-        
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("scroll", updateActiveDot);
-        window.addEventListener("scroll", toggleBackToTopBtn);
-        
-        // Запуск функций при загрузке страницы
-        reveal();
-        updateActiveDot();
-        toggleBackToTopBtn();
     </script>
 </body>
 </html>
+    
