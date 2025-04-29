@@ -3,308 +3,1045 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оливковый сад и эко-туризм в Словении</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Оливковый сад и эко-туризм в Словении | Випавская долина</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary-color: #6B8E23;
+            --secondary-color: #8B9E6B;
+            --accent-color: #D4AF37;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #F9F7F1;
+            --bg-dark: #2C3E50;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: #f9f7f2;
+            box-sizing: border-box;
         }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            margin: 0 auto;
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 3rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding-bottom: 1rem;
         }
-        .background-overlay {
+        
+        h2::after {
+            content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.25);
-            z-index: 1;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
-        .content {
-            position: relative;
-            z-index: 2;
-            padding: 60px;
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
             color: white;
-            height: 100%;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.slovenia.info/uploads/zgodbe/vipava/vipava_valley.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            align-items: center;
+            text-align: center;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 0 1rem;
         }
-        .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 300;
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 4rem;
+            animation: fadeInDown 1.5s;
+        }
+        
+        .hero h2 {
+            color: white;
+            font-size: 2rem;
             margin-bottom: 2rem;
-            max-width: 85%;
+            font-weight: 400;
+            animation: fadeInUp 1.5s;
         }
-        .location {
-            font-family: 'Montserrat', sans-serif;
+        
+        .hero h2::after {
+            display: none;
+        }
+        
+        .hero p {
             font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 2s;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: var(--text-dark);
+        }
+        
+        .navbar.scrolled .logo {
+            color: var(--primary-color);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-link {
+            margin-left: 2rem;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-light {
+            background-color: var(--bg-light);
+        }
+        
+        .section-dark {
+            background-color: var(--bg-dark);
+            color: white;
+        }
+        
+        .section-dark h2 {
+            color: white;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 3rem;
             margin-top: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .highlight-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .highlight-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: rgba(107, 142, 35, 0.05);
+            transition: var(--transition);
+        }
+        
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .highlight-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Market Analysis */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .market-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .market-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .market-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .market-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+        }
+        
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        tbody tr:hover {
+            background-color: rgba(107, 142, 35, 0.05);
+        }
+        
+        /* Charts */
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .chart {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+        }
+        
+        .chart img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        .chart h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Production Plan */
+        .production-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .olive-varieties {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .variety-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .variety-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary-color);
+        }
+        
+        .variety-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
         }
-        .gold-accent {
-            color: #D4AF37;
-            font-weight: 600;
+        
+        .variety-card h3 span {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: 1rem;
         }
-        .divider {
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, #D4AF37, transparent);
-            margin: 1.5rem 0;
+        
+        .variety-card p.variety-type {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
         }
-        .olive-branch {
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            width: 180px;
-            opacity: 0.8;
+        
+        /* Eco-Tourism */
+        .tourism-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-    </style>
-</head>
-<body>
-    <div class="slide-container">
-        <img src="https://www.slovenia.info/imagine_cache/og/uploads/zgodbe/vipava/vipava_valley.jpg" alt="Випавская долина" class="absolute inset-0 w-full h-full object-cover">
-        <div class="background-overlay"></div>
-        <div class="content">
-            <div class="divider"></div>
-            <h1>Оливковый сад и эко-туризм</h1>
-            <p class="subtitle">Премиальное <span class="gold-accent">extra-virgin</span> оливковое масло и уникальный опыт агротуризма в Словении</p>
-            <div class="divider"></div>
-            
-            <p class="location mt-8">
-                <i class="fas fa-map-marker-alt mr-2 gold-accent"></i> 
-                Посёлки Коболи и Вечкоти, Айдовшчина <span class="gold-accent ml-1">(Випавская долина)</span>
-            </p>
-            <p class="location">
-                <i class="fas fa-tree mr-2 gold-accent"></i>
-                Площадь: 4,404 га (44 041 м²)
-            </p>
-            <p class="location">
-                <i class="fas fa-calendar-alt mr-2 gold-accent"></i>
-                Горизонт планирования: 2025‑2034 гг.
-            </p>
-            
-            <div class="absolute bottom-6 left-6 flex items-center">
-                <div class="h-1 w-10 bg-white rounded-full mr-2"></div>
-                <span class="text-white text-sm">1/10</span>
-            </div>
-        </div>
-        <img src="https://www.nicepng.com/png/full/111-1112693_olive-branch-png-olive-branch-vector-png.png" alt="Оливковая ветвь" class="olive-branch">
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Исполнительное резюме - Оливковый сад и эко-туризм в Словении</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #f9f7f2;
-            font-family: 'Montserrat', sans-serif;
+        
+        .tourism-feature {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            text-align: center;
         }
-        .slide-container {
-            width: 1280px;
-            min-height: 720px;
-            margin: 0 auto;
+        
+        .tourism-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .tourism-feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tourism-feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-benefit {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .feature-benefit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-benefit h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            background-color: #f9f7f2;
-            background-image: url("https://images.unsplash.com/photo-1592154017064-c7e4fb5e0a1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-blend-mode: overlay;
+            padding-left: 2rem;
         }
-        .content-overlay {
+        
+        .feature-benefit h4::before {
+            content: '\f0a4';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+        }
+        
+        /* Financial Plan */
+        .financial-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .financial-highlight {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .financial-highlight:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .financial-highlight h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .financial-highlight p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        /* Marketing */
+        .marketing-strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .marketing-strategy {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .marketing-strategy:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .marketing-strategy h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .marketing-strategy h3 i {
+            margin-right: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .marketing-strategy ul {
+            list-style: none;
+        }
+        
+        .marketing-strategy li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .marketing-strategy li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            font-size: 0.7rem;
+            color: var(--primary-color);
+        }
+        
+        /* Risks */
+        .risks-container {
+            margin-top: 2rem;
+        }
+        
+        .risk-category {
+            margin-bottom: 3rem;
+        }
+        
+        .risk-strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .risk-strategy {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+        }
+        
+        .risk-strategy h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .risk-strategy h4::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+        }
+        
+        /* Roadmap */
+        .roadmap {
+            position: relative;
+            margin: 3rem 0;
+            padding-left: 50px;
+        }
+        
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 5px solid var(--bg-light);
+            z-index: 1;
+        }
+        
+        .roadmap-item h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .roadmap-item p {
+            color: var(--text-light);
+        }
+        
+        .next-steps {
+            margin-top: 3rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .step-item h4 {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .step-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+            position: relative;
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(249,247,242,0.85) 100%);
-            z-index: 1;
+            background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+            opacity: 0;
+            transition: var(--transition);
         }
-        .content {
-            position: relative;
-            z-index: 2;
-            padding: 60px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        
+        .gallery-item:hover::after {
+            opacity: 1;
         }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: #2C5E1A;
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 5rem 0 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #D4AF37;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
         }
-        .key-points {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .key-point {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-left: 4px solid #D4AF37;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            flex: 1 1 calc(50% - 40px);
-            min-width: 250px;
-            display: flex;
-            align-items: flex-start;
-        }
-        .key-point-icon {
-            color: #2C5E1A;
-            font-size: 1.8rem;
-            margin-right: 15px;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-        .key-point-content {
-            flex-grow: 1;
-        }
-        .key-point-title {
-            font-weight: 600;
-            color: #2C5E1A;
-            margin-bottom: 8px;
-            font-size: 1.2rem;
-        }
-        .key-point-text {
-            color: #555;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        .financial-highlight {
-            display: flex;
-            align-items: center;
-            margin-top: 30px;
-            background: linear-gradient(to right, rgba(44, 94, 26, 0.1), transparent);
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .financial-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #D4AF37;
-            font-weight: 700;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-            margin-right: 20px;
-        }
-        .financial-text {
-            color: #333;
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-        .olive-branch {
+        
+        .footer-section h3::after {
+            content: '';
             position: absolute;
-            bottom: 40px;
-            right: 40px;
-            width: 160px;
-            opacity: 0.2;
-            z-index: 1;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-section p {
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1s;
+        }
+        
+        .fade-in-down {
+            animation: fadeInDown 1s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content, 
+            .production-content {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .navbar {
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 5rem;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                margin: 0;
+                padding: 1.5rem 2rem;
+                color: var(--text-dark);
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            .olive-varieties {
+                grid-template-columns: 1fr;
+            }
+            
+            .tourism-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .marketing-strategies {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero {
+                height: 80vh;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="slide-container">
-        <div class="content-overlay"></div>
-        <div class="content">
-            <h1>Исполнительное резюме</h1>
-            
-            <div class="key-points">
-                <div class="key-point">
-                    <div class="key-point-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="key-point-content">
-                        <div class="key-point-title">Преобразование участка</div>
-                        <div class="key-point-text">Полное преобразование участка в интенсивный оливковый сад с орошением в два этапа (2,2 га + 2,2 га).</div>
-                    </div>
-                </div>
-                
-                <div class="key-point">
-                    <div class="key-point-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="key-point-content">
-                        <div class="key-point-title">Автохтонные сорта</div>
-                        <div class="key-point-text">Посадка сортов Istrska belica (70%) и Buga (30%) — стойких к морозу и ценных низкой кислотностью масла.</div>
-                    </div>
-                </div>
-                
-                <div class="key-point">
-                    <div class="key-point-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="key-point-content">
-                        <div class="key-point-title">Туристическая концепция</div>
-                        <div class="key-point-text">«Оливковый уик-энд» — гости собирают урожай, получают уникальный опыт и снижают затраты на наёмную рабочую силу.</div>
-                    </div>
-                </div>
-                
-                <div class="key-point">
-                    <div class="key-point-icon">
-                        <i class="fas fa-euro-sign"></i>
-                    </div>
-                    <div class="key-point-content">
-                        <div class="key-point-title">Финансовая поддержка</div>
-                        <div class="key-point-text">Прямые CAP-платежи (≈ 320 €/га) и инвестиционная субсидия CSP Мера 4.1 — 40% расходов на закладку сада и орошение.</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="financial-highlight">
-                <div class="financial-number">424 тыс. €</div>
-                <div class="financial-text">
-                    <strong>NPV (дисконт 8%)</strong><br>
-                    Точка безубыточности — 3-й год, накопленный денежный поток > 110 тыс. € к 5-му году. IRR ≈ 36%.
-                </div>
-            </div>
-            
-            <div class="absolute bottom-6 left-6 flex items-center">
-                <div class="h-1 w-10 bg-green-800 rounded-full mr-2"></div>
-                <span class="text-green-800 text-sm">2/10</span>
-            </div>
-        </div>
-        <img src="https://www.nicepng.com/png/full/111-1112693_olive-branch-png-olive-branch-vector-png.png" alt="Оливковая ветвь" class="olive-branch">
-    </div>
-</body>
-</html>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ОливкИстрия</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">О проекте</a></li>
+                <li><a href="#market" class="nav-link">Анализ рынка</a></li>
+                <li><a href="#production" class="nav-link">Производство</a></li>
+                <li><a href="#tourism" class="nav-link">Эко-туризм</a></li>
+                <li><a href="#finance
